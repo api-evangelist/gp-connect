@@ -1,0 +1,86 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: GP Connect (NHS England)
+providerId: gp-connect
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - NHS
+  - FHIR
+  - Healthcare
+  - Interoperability
+  - UK
+description: >
+  GP Connect is a publicly funded NHS England programme. There is no direct
+  commercial pricing for API access. Access is governed by clinical safety
+  requirements, information governance agreements, and NHS England onboarding
+  approval. Organisations must hold a valid use case approved by NHS England
+  and meet DCB0129/DCB0160 clinical safety standards before going live in
+  production. The sandbox environment is open access with no credentials
+  required. Integration and production environments require Spine Security
+  Proxy (SSP) or NHS login credentials.
+sources:
+  - https://digital.nhs.uk/services/gp-connect
+  - https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir
+  - https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir
+plans:
+  - id: gp-connect-sandbox
+    name: Sandbox (Open Access)
+    type: free
+    description: >
+      Open-access sandbox environment available to all developers without
+      credentials. Stateless; does not store data. Covers a limited set of
+      test scenarios. No onboarding or clinical safety approval required.
+    entries:
+      - label: Sandbox API access
+        name: sandbox_access
+        type: included
+        metric: requests
+        limit: -1
+        timeFrame: usage
+        geo: uk
+        unit: 1
+        price: '0'
+        userMultiplied: false
+  - id: gp-connect-integration
+    name: Integration Testing
+    type: free
+    description: >
+      Stateful integration test environment requiring NHS England onboarding
+      approval. Used for formal conformance testing before production access.
+      Requires HSCN connectivity for clinical APIs and NHS login for patient-
+      facing APIs.
+    entries:
+      - label: Integration environment access
+        name: integration_access
+        type: included
+        metric: requests
+        limit: -1
+        timeFrame: usage
+        geo: uk
+        unit: 1
+        price: '0'
+        userMultiplied: false
+  - id: gp-connect-production
+    name: Production
+    type: free
+    description: >
+      Production access at no direct cost to the consuming organisation.
+      NHS England funds the GP Connect infrastructure as part of the national
+      interoperability programme. Requires approved use case, clinical safety
+      officer, IG compliance, and a Supplier Conformance Assessment List (SCAL)
+      technical conformance certificate. Patient-facing APIs currently limited
+      to New Market Entrant GP system suppliers and the NHS App.
+    entries:
+      - label: Production API access
+        name: production_access
+        type: included
+        metric: requests
+        limit: -1
+        timeFrame: usage
+        geo: uk
+        unit: 1
+        price: '0'
+        userMultiplied: false

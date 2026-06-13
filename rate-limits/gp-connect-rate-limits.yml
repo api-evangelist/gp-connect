@@ -1,0 +1,61 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: GP Connect (NHS England)
+providerId: gp-connect
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: false
+tags:
+  - NHS
+  - FHIR
+  - Healthcare
+  - Rate Limiting
+  - UK
+description: >
+  NHS England does not publish explicit per-endpoint rate-limit headers for
+  the GP Connect APIs. Access is mediated by the Spine Security Proxy (SSP)
+  for clinical system APIs (Access Record Structured, Access Document,
+  Appointment Management, Send Document, Update Record) and by NHS login
+  OAuth 2.0 token scopes for patient-facing APIs. Fair-use constraints apply
+  at the SSP and Spine layer. Production capacity is governed by NHS England
+  infrastructure rather than per-API-key quotas.
+sources:
+  - https://developer.nhs.uk/apis/gpconnect-1-0-0/development_fhir_api_guidance.html
+  - https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir
+  - https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels
+algorithm: spine-proxy-fair-use
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+notes: >
+  The Spine Security Proxy (SSP) acts as a single-entry TLS mutual
+  authentication point for all clinical GP Connect APIs. There are no
+  published X-RateLimit-* response headers. HTTP 429 may be returned under
+  extreme load. Service level is Silver (24x7 availability, business-hours
+  support Mon-Fri 08:00-18:00 excl. bank holidays).
+limits:
+  - id: sandbox-open-access
+    scope: environment
+    label: Sandbox environment rate limit
+    value: -1
+    notes: >
+      Sandbox is open access and stateless. No hard rate limit is published;
+      fair-use expected. Sandbox does not reflect production throughput.
+  - id: service-level-silver
+    scope: platform
+    label: Service level (Silver)
+    value: 99.9
+    unit: percent-uptime
+    notes: >
+      Silver service: 24/7 availability, business-hours support only
+      (Mon-Fri 08:00-18:00 excl. bank holidays). Applies to all GP Connect
+      integration and production environments.
+  - id: ssp-connection-limit
+    scope: system
+    label: SSP concurrent connections
+    value: -1
+    notes: >
+      Limits governed at the HSCN/SSP infrastructure level. Consuming
+      systems must be SSP-compliant and hold valid Spine credentials.
+      No per-system numeric cap is publicly documented.

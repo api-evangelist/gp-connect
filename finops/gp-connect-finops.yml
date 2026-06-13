@@ -1,0 +1,73 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: GP Connect (NHS England)
+providerId: gp-connect
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - NHS
+  - FHIR
+  - Healthcare
+  - UK
+  - Public Sector
+description: >
+  GP Connect is a publicly funded NHS England national interoperability
+  programme. There is no direct API-call cost to consuming organisations;
+  the infrastructure is funded by NHS England centrally. FinOps considerations
+  for NHS organisations adopting GP Connect are therefore primarily indirect:
+  integration engineering costs, clinical safety officer time, information
+  governance review, and HSCN connectivity charges (for clinical system APIs).
+  Patient-facing APIs require NHS login integration, which may have associated
+  NHS login programme costs.
+sources:
+  - https://digital.nhs.uk/services/gp-connect
+  - https://digital.nhs.uk/services/health-and-social-care-network
+  - https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: NHS England (NHS Digital)
+serviceCategory: Healthcare Interoperability
+billingModel:
+  pricingCategory: Publicly-Funded (No Direct API Cost)
+  pricingUnit: null
+  pricingCurrency: GBP
+  invoicingCadence: null
+  commitments:
+    - type: HSCN Connectivity
+      description: >
+        Clinical GP Connect APIs (Access Record Structured, Access Document,
+        Appointment Management, Send Document, Update Record) require a
+        Health and Social Care Network (HSCN) connection. HSCN connectivity
+        is procured separately from NHS England or via a network service
+        provider; costs vary by organisation size and connectivity tier.
+    - type: NHS Login Integration
+      description: >
+        Patient-facing GP Connect APIs (Patient Facing Access Record,
+        Patient Facing Appointment Management, Prescriptions Management)
+        require NHS login at P9 identity verification level. NHS login
+        programme participation may have associated assurance and
+        onboarding costs.
+meters:
+  - name: api-calls
+    description: GP Connect API calls — no direct per-call charge.
+    unit: request
+    focusServiceCategory: Healthcare Interoperability
+  - name: hscn-connectivity
+    description: >
+      HSCN network connectivity required for clinical APIs. Billed by
+      HSCN network service provider, not by NHS England directly.
+    unit: month
+    focusServiceCategory: Networking
+costOptimizationNotes: >
+  The primary cost levers for GP Connect adoption are integration
+  engineering effort (one-time), clinical safety officer and IG review
+  (recurring per release), and HSCN bandwidth (operational). There are
+  no per-request or per-user API fees to optimise against.
