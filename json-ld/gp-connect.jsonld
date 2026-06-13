@@ -1,0 +1,156 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "api": "https://schema.org/WebAPI",
+    "fhir": "http://hl7.org/fhir/",
+    "nhs": "https://digital.nhs.uk/"
+  },
+  "@type": "Organization",
+  "@id": "https://digital.nhs.uk/services/gp-connect",
+  "name": "GP Connect",
+  "description": "GP Connect is a national NHS England interoperability programme that enables authorised clinical and patient-facing systems to securely access and update patient records held in GP principal clinical systems (EMIS Web, SystmOne, Vision).",
+  "url": "https://digital.nhs.uk/services/gp-connect",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "NHS England",
+    "url": "https://www.england.nhs.uk/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United Kingdom"
+  },
+  "knowsAbout": [
+    {
+      "@type": "DefinedTerm",
+      "name": "FHIR STU3",
+      "url": "https://hl7.org/fhir/STU3/"
+    },
+    {
+      "@type": "DefinedTerm",
+      "name": "FHIR R4",
+      "url": "https://hl7.org/fhir/R4/"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "GP Connect APIs",
+    "itemListElement": [
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir",
+        "name": "GP Connect Access Record - Structured FHIR API",
+        "description": "Retrieve structured and coded clinical information from a patient's GP practice record via a FHIR STU3 interface.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Patient Records", "Clinical Access"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir",
+        "name": "GP Connect Access Document FHIR API",
+        "description": "Retrieve unstructured documents from a patient's GP practice record.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Documents", "Unstructured Records"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir",
+        "name": "GP Connect Appointment Management FHIR API",
+        "description": "Manage GP practice appointments between different clinical systems.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Appointments", "Booking"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir",
+        "name": "GP Connect Send Document FHIR API",
+        "description": "Send a PDF consultation summary or clinical document to a patient's registered GP practice via FHIR STU3 ITK3 composition payloads over MESH.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Documents", "Messaging"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir",
+        "name": "GP Connect Update Record FHIR API",
+        "description": "Send structured FHIR data to update a patient's GP record with medications, encounters, and observations.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Patient Records", "Pharmacy"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir",
+        "name": "GP Connect Patient Facing Access Record FHIR API",
+        "description": "Allow patients to access structured and coded information from their own GP practice record via a patient-facing application.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Patient Facing", "NHS App"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir",
+        "name": "GP Connect Patient Facing Appointment Management FHIR API",
+        "description": "Allow patients to book and manage their own appointments at their GP practice via a patient-facing application.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR", "Patient Facing", "Appointments", "NHS App"]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir",
+        "name": "GP Connect Patient Facing Prescriptions Management FHIR API",
+        "description": "Allow patients to manage repeat prescriptions held by their GP practice via a patient-facing application.",
+        "url": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir",
+        "documentation": "https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir",
+        "termsOfService": "https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers",
+        "provider": {
+          "@type": "Organization",
+          "name": "NHS England"
+        },
+        "category": ["Healthcare", "FHIR R4", "Patient Facing", "Prescriptions", "NHS App"]
+      }
+    ]
+  },
+  "sameAs": [
+    "https://github.com/NHSDigital",
+    "https://standards.nhs.uk/published-standards/gp-connect-access-record-structured-fhir-api"
+  ]
+}
