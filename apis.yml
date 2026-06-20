@@ -2,7 +2,7 @@ aid: gp-connect
 url: https://raw.githubusercontent.com/api-evangelist/gp-connect/refs/heads/main/apis.yml
 name: GP Connect
 kind: company
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - NHS
   - FHIR
@@ -46,7 +46,7 @@ apis:
       - Problems
       - Investigations
       - Clinical Access
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect-access-record-structured-fhir
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir
     description: >-
@@ -74,7 +74,7 @@ apis:
       - Documents
       - Unstructured Records
       - Clinical Access
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect-access-document-fhir
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir
     description: >-
@@ -94,7 +94,7 @@ apis:
       - Slot Management
       - Booking
       - Clinical Access
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect-appointment-management-fhir
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir
     description: >-
@@ -123,7 +123,7 @@ apis:
       - Documents
       - Messaging
       - Clinical Access
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir
     description: >-
@@ -146,7 +146,7 @@ apis:
       - Observations
       - Pharmacy
       - Clinical Access
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect-update-record-fhir
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir
     description: >-
@@ -174,7 +174,7 @@ apis:
       - Immunisations
       - NHS Login
       - NHS App
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/access-record-fhir/FHIR/STU3
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir
     description: >-
@@ -205,7 +205,7 @@ apis:
       - Booking
       - NHS Login
       - NHS App
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/appointments-management-fhir/FHIR/STU3
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir
     description: >-
@@ -236,7 +236,7 @@ apis:
       - NHS Login
       - NHS App
       - UK Core
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/prescriptions-management-fhir/FHIR/R4
     humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir
     description: >-
