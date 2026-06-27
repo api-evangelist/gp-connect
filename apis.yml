@@ -266,11 +266,11 @@ common:
     url: https://digital.nhs.uk/developer/api-catalogue
   - type: HelpAndSupport
     url: https://digital.nhs.uk/developer/help-and-support
-  - type: SignUp
+  - type: Signup
     url: https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers
   - type: Authentication
     url: https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-login-separate-authentication-and-authorisation
-  - type: Onboarding
+  - type: GettingStarted
     url: https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers
   - type: GitHub
     url: https://github.com/NHSDigital
