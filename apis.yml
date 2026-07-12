@@ -260,6 +260,10 @@ apis:
         url: https://github.com/NHSDigital/gp-connect-prescriptions-management-fhir
 
 common:
+  - type: VulnerabilityDisclosure
+    url: security/gp-connect-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/gp-connect-domain-security.yml
   - type: Portal
     url: https://digital.nhs.uk/services/gp-connect
   - type: Documentation
