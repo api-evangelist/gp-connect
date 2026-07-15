@@ -260,6 +260,8 @@ apis:
         url: https://github.com/NHSDigital/gp-connect-prescriptions-management-fhir
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/gp-connect-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/gp-connect-vulnerability-disclosure.yml
   - type: DomainSecurity
