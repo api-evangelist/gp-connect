@@ -1,0 +1,497 @@
+openapi: 3.0.0
+info:
+  title: gp-connect-access-record-structured- Appointment FHIR API
+  version: Computed and injected at build time by `scripts/set_version.py`
+  description: "## Overview\nUse this API to access structured information from a patient's registered GP practice record. Structured information is patient data in a coded format that a consuming system can import and process.\n\nThe API accesses GP principal supplier systems, provides a consistent interface and data model, and is brokered through [Spine](https://digital.nhs.uk/services/spine). Refer to [Spine terminology](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/spine-terminology), used throughout these pages, for further details.\n\n![GP Connect Ecosystem Overview](https://raw.githubusercontent.com/NHSDigital/gp-connect-access-record-structured-fhir/master/specification/images/gpconnect-ecosystem.svg)\n\nYou can retrieve data from GP practice records for the following areas:\n\n- medications\n- allergies\n\nData is available for the following clinical areas:\n\n- immunizations\n- consultations\n- problems\n- investigations\n- outbound referrals\n- diary entries\n- uncategorised data (other clinically coded items that are present in the record)\n\nThese clinical areas are still in development; there is enough data to test, but it is subject to change as GP systems suppliers go through the development process.\n\nIt does not include:\n\n- extended demographics information - for example, about carers\n- flags and alerts\n- templates\n- test requests\n\nCommon use cases include:\n\n- access GP medications on admission to secondary care, reducing transcription errors\n- active checking of a patient's prescription in unscheduled care\n- out-of-hours GP accesses patient's medications, allergies and problems\n- midwife views patient record before visiting a patient\n- community cardiac nurse accesses GP record before visiting a patient\n\n\nFor more details, see the [GP Connect Access Record: Structured specification](https://developer.nhs.uk/apis/gpconnect-1-5-1/accessrecord_structured.html), and for a description of terms and standards used in this guide, please see the [General API Guidance page](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/general-api-guidance).\n\nYou cannot currently use this API to:\n\n- create patient-facing views of a medical record\n- create reports for secondary use, such as care planning\n- write back to the GP record\n\n\n### Retrieving documents\n\nTo retrieve documents from a patient's registered GP practice, use [GP Connect Access Document - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir). After you've found the relevant document references within Access Record returns, use GP Connect Access Document to retrieve the documents. All documents can be requested separately.\n\n\n## Who can use this API\nThis API can be used by developers of clinical systems that support clinicians delivering direct care.\n\nBefore you start development, read the [GP Connect API 1.5.1-beta](https://developer.nhs.uk/apis/gpconnect-1-5-1/) specification and the prerequisites listed below.  \n\nBecome an API consumer\nIf you're planning on consuming data using GP Connect APIs then you're a consumer system.\n\nBecome an API provider\nIf you're planning on providing data using GP Connect APIs then you're a provider system.\n\n### Prerequisites\n#### Technical\nThe technical prerequisites are as follows:\n\n- you must have access to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network)\n- you must be [Personal Demographics Service (PDS)](https://digital.nhs.uk/Demographics)-compliant or capable of performing a PDS search via NHS Digital or a third-party provider\n#### Information governance (IG)\nThe IG prerequisites are as follows:\n\n- your organisation must be compliant with the [GP Connect Direct Care API Information Governance Model](https://github.com/nhsconnect/gpc-consumer-support/wiki/Information-Governance-(IG))\n- you must manage access to your system locally using local role-based access control (RBAC) (this does not need to be compliant with the national RBAC model and GP Connect products do not require smartcards to control access, though they can be used if already implemented)\n\n- the GP Connect APIs are for direct care purposes for NHS patients in England\n### Clinical safety\nThe clinical safety prerequisites are as follows:\n\n- you must have a clinical safety officer (CSO) who is responsible for [DCB0129](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0129-clinical-risk-management-its-application-in-the-manufacture-of-health-it-systems) and, if necessary, [DCB0160](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0160-clinical-risk-management-its-application-in-the-deployment-and-use-of-health-it-systems) (for more on clinical risk management, visit [Clinical risk management standards](https://digital.nhs.uk/services/clinical-safety/clinical-risk-management-standards))\nIf you are confident that you can meet the prerequisites, please express an interest with the GP Connect team (see 'Onboarding' below).\n\n## Related APIs\nThe following APIs are also related to this API:\n\n- GP Connect Access Document - FHIR API - use this API to retrieve unstructured documents from a patient's GP practice record\n- Personal Demographics Service - FHIR API  - use this API to search for patients, retrieve patients by NHS number and update patients\n- Personal Demographics Service - HL7 V3 API  - use this if you want to use functions that are not yet available on the FHIR API\n- Spine Directory Service (SDS) - FHIR API  - access accredited system information and messaging endpoint details\n\n## Integration with Spine\nFor guidance on how to integrate with the Spine systems required to use this API, please see the [integrate with spine](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/spine-integration) page.\n\nFor guidance on querying and using the Spine Directory Service (SDS) [please see the Spine Directory Service page](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/spine-directory-service).\n## API status and roadmap\nThe current working version is 1.5.1. The API status is:\n\n- in production (out of beta) for medications and allergies - there will be no breaking changes\n- in production, beta for other aspects of the clinical record - there might be breaking changes, but we will let you know in advance\nIt may not be fully supported by all providing systems. See [GP Connect supplier progress](https://digital.nhs.uk/services/gp-connect/supplier-progress) for details of provider rollout.\n\nThe previous version ([1.5.0](https://developer.nhs.uk/apis/gpconnect-1-5-0/)) does not include the ability to access deceased patients' documents, but is available for system suppliers who have started to develop against it.\n\nRoadmap\n\nThe next planned version is [1.6.0](https://developer.nhs.uk/apis/gpconnect-1-6-0/), which is currently [in production, beta](http://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses). The 1.6.0 specification contains the full scope of 1.5.1, but additionally it introduces a new message to support GP2GP transactions. It is important to understand that the GP2GP transactions do not affect the consumer build. 1.6.0 will be backward compatible with the 1.5.1 specification.\n## Service level\nThis API is a silver service, meaning it is operational 24 hours a day, 365 days a year but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.\n\nFor more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).\n## Technology\nThis is a synchronous API. It conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir) global standard for health care data exchange. Specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 3. \n\nIt uses a FHIR Operation that requires you to make a HTTP POST of a FHIR Parameters resource to the provider endpoint. The resource contains parameters that correspond to the requested clinical information - for example, medications, allergies or problems.\n\nWe use this approach instead of a resource-based RESTful API in the interests of clinical safety. The provider system constructs a response that contains all clinical information relating to the request to ensure that the clinical information is interpreted safely.\n\n\n## Network access\nYou can access this API via the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).\n\nThe API is not currently available over the internet, but we plan to enable public internet access in the future.\n\nFor more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).\n## Security and authorisation\n### Security\nAccess to the GP Connect APIs is controlled and protected by the [Spine Secure Proxy (SSP)](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#spine-security-proxy-ssp-), a forward HTTP proxy.\n\nIt provides a single security point for both authentication and authorisation for consuming systems. Additional responsibilities include auditing of requests, checking data sharing agreements and transaction logging, and its use and examples are described at the [Spine Secure Proxy page](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/spine-secure-proxy).\n\nFor a breakdown of cross-organisation audit and provenance, please see the related page [here](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/cross-organisation-audit-and-provenance).\n\nAll HTTP communications are secured using TLS MA. This includes both legs of the request, from consumer system to the proxy and then from the proxy to provider system.\n\n### Authorisation\nAuthorisation takes place in two locations: \n\n- the consumer system\n- the SSP\nThe consumer system must have local RBAC in place and restrict GP Connect APIs to authorised users. With each request, a JSON Web Token (JWT) must be included with the following information:\n\n- details of users, including role\n- where smartcards are used in the consumer system, including SDS user and role IDs\n- details of the consumer system\n- details of the consumer's organisation, including ODS code\nThe information in the JWT is retained for audit purposes.\n\nProvider systems:\n- SHALL only accept connections from the [Spine Secure Proxy](https://developer.nhs.uk/apis/gpconnect-1-5-0/integration_spine_secure_proxy.html) (SSP)\n- SHALL authenticate the SSP prior to responding to any requests using its [client certificate](https://developer.nhs.uk/apis/gpconnect-1-5-0/development_api_security_guidance.html#client-certificates-tlsma)\n- SHALL only accept encrypted connections and drop connection attempts presented over insecure protocols\n- SHALL only accept requests for its allocated address space identifier (ASID), as specified by the Ssp-To header on its matching endpoint URL\n- SHALL check that the Ssp-InteractionID value is consistent with the endpoint being requested\n- SHALL check for the presence of all [SSP headers](https://developer.nhs.uk/apis/spine-core-1-0/ssp_implementation_guide.html#consumer)\n- SHALL check that an [authorization bearer token](https://developer.nhs.uk/apis/gpconnect-1-5-0/integration_cross_organisation_audit_and_provenance.html#json-web-tokens-jwt) is present and correctly formed\n- MAY authorise access to API endpoints through examining acceptable values in the JSON Web Tokens (JWT) requested_scope claim\n- SHALL risk-manage the security of the endpoints of the Transport Layer Security (TLS) communications, so as to prevent inappropriate risks (for example, audit logging of the GET parameters into an unprotected audit log)\n\nProvider systems should support only the following ciphers, ordered by preference (that is, the first item being the most preferred):\n- AESGCM+EECDH\n- AESGCM+EDH\n- AES256+EECDH\n- AES256+EDH\n\nThe SSP checks data-sharing agreements to ensure that the consumer system is authorised to communicate with the provider system.\n\nMore details of both the ciphers and TLS approach, as well as headers and certificates, can be found on the [Security page](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/security).\n\n## Error Handling\nA full breakdown of errors, including examples, can be found on the [Error Handling page](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/error-handling).\n\n## Environments and testing\n| Environment\t                 | URL |\n| -----------                  | --- |\n| Internet-facing demonstrator | \t[https://orange.testlab.nhs.uk/](https://orange.testlab.nhs.uk/) |\n| OpenTest environment\t       | [https://orange.testlab.nhs.uk/opentest.html](https://orange.testlab.nhs.uk/opentest.html) |\n| Integration                  |  (INT)\tProvided during onboarding process |\nWe have 2 testing streams:\n\n- clinical testing\n- technical testing\nEach stream is complicated in its own right and we've designed them to run in parallel to help you to work with us more easily and to consider your system design in a holistic way, rather than having to complete one stream before the other.\n\n### Clinical testing\nThe aim of clinical testing is to ensure the safe interoperability of information exported from GP systems and then processed or displayed in a consuming system. \n\nTo help you test that your consuming system is clinically safe, we have created the following resources:\n\n- a patient record or, for some more complex areas, 2 records that can be requested from the GP Connect demonstrator\n- a description of each of the data items, what it is intending to test and the hazards that it is intended to mitigate\n- notes and guidance about each clinical area that describe how to process and display the data that it contains in a safe way\nSee [Clinical test data](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir/clinical-test-data).\n\n### Technical testing\nThe purpose of technical testing is to help you assure the messaging capability of your system via the Spine with GP Connect provider FHIR endpoints. It ensures the consumer requests conform to FHIR standards as per the specification. In addition, it maintains the integrity of the data displayed to the user and assures pertinent functional requirements. It does not assure the message payload, which is covered in clinical assurance.\n\nAn automated provider test harness has been made publicly available to allow standardised testing of the FHIR® APIs prior to any formal assurance activities being undertaken. This approach aims to streamline the end-to-end assurance process by ensuring that a common baseline level of technical conformance has been achieved and, thus, fewer issues are surfaced during formal assurance.\n\nDownload the [GP Connect automated test suite for API providers](https://github.com/nhsconnect/gpconnect-provider-testing) to help validate the technical conformance of your provider API implementation.\n\nSee [Consumer Supplier Test Assurance for achieving Technical Conformance](https://github.com/nhsconnect/gpc-consumer-support/wiki/Document-library#consumer-supplier-test-assurance-for-achieving-technical-conformance) (PDF) for full details of the technical conformance process and relevant artefacts.\n## Onboarding\nExpressing an interest\nIf you meet the prerequisites and have a product that can integrate with GP Connect, you should express an interest with us by submitting a use case.\n\nThe main purpose of the use case is to help us understand how you plan to use GP Connect APIs and the business issue you are looking to address. You should email your use case to the [GP Connect team](mailto:gpconnect@nhs.net).\n\nYour use case should include the following information as a minimum:\n\n- the business problem you are intending to solve using GP Connect\n- how GP Connect will be used in practice to benefit patients and staff\n- which of the GP Connect products you will use to benefit patients and staff\n- any end-user organisations you are currently working with\n- who your clinical safety officer is and, where available, your clinical risk management process documentation\nOnce we receive your use case, we'll respond within 14 days.\n\nConsumer assurance process\nOn approval of a use case, we will support you through the assurance process through to go live. We will discuss the [assurance process](https://github.com/nhsconnect/gpc-consumer-support/wiki/Assurance-Process-Overview) and artefacts with you to help you understand the requirements.\n\n![Access Record Structured Consumer Assurance Process](https://raw.githubusercontent.com/NHSDigital/gp-connect-access-record-structured-fhir/master/specification/images/access-record-structured-consumer-assurance-process.svg)\n\nStart your development work within 6 months of use case approval. If you miss this date, a review or new submission of the use case will be required. Changes or additional development will also require a review or new use case submission. For full details of the technical conformance process, see [GP Connect Consumer Supplier Test Assurance for achieving Technical Conformance](https://github.com/nhsconnect/gpc-consumer-support/wiki/Document-library#consumer-supplier-test-assurance-for-achieving-technical-conformance) (PDF).\n\nClinical assurance process\nWe are here to support you to develop clinically safe systems in line with your responsibility to achieve the relevant [DCB0129](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0129-clinical-risk-management-its-application-in-the-manufacture-of-health-it-systems) or [DCB0160](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0160-clinical-risk-management-its-application-in-the-deployment-and-use-of-health-it-systems) clinical safety standards. \n\n![Access Record Structured Clinicals Assurance Process](https://raw.githubusercontent.com/NHSDigital/gp-connect-access-record-structured-fhir/master/specification/images/gpc2-structured-consumer-clinical-assurance-process.svg)\n\nThe three stages of the clinical assurance process for GP Connect Access Record: Structured consumers\n\nWe host a series of meetings to help you develop clinically safe systems:\n\n- initial meeting\n- clinical safety process readiness review meeting\n- clinical evaluation of readiness for deployment meeting\nFor more information, see [Clinical assurance process details](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir/clinical-assurance-process-details).\n\n## Interactions\nFor a full list of interactions for this API, see [GP Connect Interaction IDs](https://digital.nhs.uk/developer/api-catalogue/gp-connect-general-pages/interaction-ids), which contains Access Record: Structured.\n\nFor details on the general structure of the interactions, see [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir).\n  \n## Additional guidance: Clinical safety and hazard log\n### Clinical safety approach\nYour organisation must have a clinical safety officer. Information standards underpin national healthcare initiatives from the Department of Health, NHS England, the Care Quality Commission, and other national health organisations. They provide the mechanism for introducing requirements to which the NHS, those with whom it commissions services and its IT system suppliers, must conform.\n\nThe following two standards relating to clinical safety are accepted for publication under section 250 of the Health and Social Care Act 2012 by the Data Coordination Board (DCB). In line with current DCB practice, each standard comprises:\n\n- a specification, which defines the requirements and conformance criteria to be met by the user of the standard - how these requirements are met is the responsibility of the user\n- implementation guidance, which provides an interpretation of the requirements and, where appropriate, defines possible approaches to achieving them\nCompliance with [DCB0129](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0129-clinical-risk-management-its-application-in-the-manufacture-of-health-it-systems) and [DCB0160](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0160-clinical-risk-management-its-application-in-the-deployment-and-use-of-health-it-systems) is mandatory under the Health and Social Care Act 2012 ([Clinical risk management standards - NHS Digital](https://digital.nhs.uk/services/clinical-safety/clinical-risk-management-standards)).\n\n### Clinical safety guidance \nThe [Guide for Access Record: Structured](https://github.com/nhsconnect/gpc-consumer-support/blob/master/Clinical%20Safety%20Officer%20Guidance%20for%20GP%20Connect%20V0.6%20Structured.pdf) helps clinical safety officers assure GP Connect consumer systems into their own organisations. It includes details of the clinical safety standards that consumer suppliers and their commissioning organisations must be compliant with ([DCB0129](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0129-clinical-risk-management-its-application-in-the-manufacture-of-health-it-systems) and [DCB0160](https://digital.nhs.uk/data-and-information/information-standards/information-standards-and-data-collections-including-extractions/publications-and-notifications/standards-and-collections/dcb0160-clinical-risk-management-its-application-in-the-deployment-and-use-of-health-it-systems)).\n\n[Clinical safety principles](https://github.com/nhsconnect/gpc-consumer-support/wiki/Clinical-Safety-Principles) shows you who is responsible for the clinical safety of GP Connect specifications and consumer systems.\n\n### Hazard log\nThe GP Connect Access Record: Structured generic [hazard log](http://github.com/nhsconnect/gpc-consumer-support/raw/master/test_data_files/GP_Connect_Hazard_Log_Consumers_v1.0.xlsx) shows you the clinical risks of using GP Connect functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.\n  \n"
+  contact:
+    name: gp-connect-access-record-structured-fhir API Support
+    url: https://simplifier.net/guide/gp-connect-access-record-structured/Home/Help-and-Support/Enquiries.page.md?version=current
+    email: gpconnect@nhs.net
+tags:
+- name: FHIR
+paths:
+  /FHIR/STU3/Bundle:
+    post:
+      operationId: post-update
+      summary: Post an update to the patients record
+      description: ''
+      parameters:
+      - in: header
+        name: SSP-Trace-ID
+        description: 'The provider''s Trace ID (normally a GUID  or UUID)
+
+          '
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: SSP-From
+        description: 'The provider''s ASID
+
+          '
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: SSP-To
+        description: 'The consumer''s ASID
+
+          '
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: SSP-InteractionID
+        description: 'urn:nhs:names:services:gpconnect:fhir:bundle
+
+          '
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: EncounterId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: Successful Request.
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+              description: "A [bundle](https://hl7.org/fhir/stu3/bundle.html) is posted to the endpoint consisting of four resources:\n - [Patient](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-Patient-1?version=current)\n - [Encounter](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-Encounter-1?version=current)\n - [Medication Statement](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-MedicationStatement-1?version=current)\n - [Observation](https://simplifier.net/guide/gpconnect-data-model/Home/FHIR-Assets/All-assets/Profiles/Profile--CareConnect-GPC-Observation-1?version=current)\n"
+            example:
+              resourceType: Bundle
+              meta:
+                versionId: '1'
+                lastUpdated: '2023-02-14T11:58:27.1516395+00:00'
+              type: collection
+              entry:
+              - resource:
+                  resourceType: Patient
+                  id: e461896a-b0c8-457d-9397-b276c9aec312
+                  meta:
+                    versionId: '1'
+                    lastUpdated: '2023-02-14T11:58:27.1516395+00:00'
+                    profile:
+                    - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1
+                  active: true
+                  name:
+                  - use: official
+                    family: Test
+                    given:
+                    - Roger
+                  gender: male
+                  birthDate: '1975-12-25'
+              - resource:
+                  meta:
+                    versionId: '1'
+                    lastUpdated: '2023-01-24T11:58:38.4899643+00:00'
+                    profile:
+                    - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Encounter-1
+                  resourceType: Encounter
+                  reason:
+                  - coding:
+                    - extension:
+                      - extension:
+                        - valueId: '86591008'
+                          url: descriptionId
+                        - valueString: PharmacyVisit
+                          url: descriptionDisplay
+                        url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid
+                      display: Upset Stomach
+                      system: http://snomed.info/sct
+                      code: '271681002'
+                  type:
+                  - coding:
+                    - display: Face to face encounter
+                      code: '1258986006'
+                      system: http://snomed.info/sct
+                  subject:
+                    identifier:
+                      extension:
+                      - valueCodeableConcept:
+                          text: Number present and verified
+                          coding:
+                          - display: Number present and verified
+                            code: '01'
+                            system: https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1
+                        url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1
+                      system: https://fhir.nhs.uk/Id/nhs-number
+                      value: '9989453456'
+                  participant:
+                  - period:
+                      start: '2022-12-25T14:01:31+00:00'
+                    individual:
+                      identifier:
+                        system: https://fhir.hl7.org.uk/Id/gmc-number
+                        value: '0054272'
+                    type:
+                    - text: recorder
+                      coding:
+                      - system: https://fhir.nhs.uk/STU3/ValueSet/GPConnect-ParticipantType-1
+                        code: REC
+                  period:
+                    start: '2022-12-25T10:42:12+00:00'
+                  identifier:
+                  - system: https://hospital.example/visit-number
+                    value: visit-00425123
+              - resource:
+                  resourceType: MedicationStatement
+                  id: 359d0a53-f1ef-4c0b-9d58-01cabbc48413
+                  meta:
+                    versionId: '1'
+                    lastUpdated: '2023-01-24T13:29:33.7462714+00:00'
+                    profile:
+                    - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationStatement-1
+                  extension:
+                  - url: https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-PrescribingAgency-1
+                    valueCodeableConcept:
+                      coding:
+                      - system: https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-PrescribingAgency-1
+                        code: prescribed-by-another-organisation
+                      text: Prescribed by another organisation
+                  identifier:
+                  - system: https://hospital.example/medication-statement
+                    value: rx-0281156
+                  context:
+                    identifier:
+                      system: https://hospital.example/visit-number
+                      value: visit-00425123
+                  status: completed
+                  medicationCodeableConcept:
+                    coding:
+                      code: '39732311000001104'
+                      system: https://dmd.nhs.uk
+                      display: Amoxicillin 250mg capsules
+                  effectivePeriod:
+                    start: '2023-01-20'
+                    end: '2023-01-27'
+                  dateAsserted: '2023-01-24T13:29:33.7477005+00:00'
+                  informationSource:
+                    identifier:
+                      system: https://fhir.nhs.uk/Id/ods-organization-code
+                      value: RFR
+                  subject:
+                    identifier:
+                      extension:
+                      - url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1
+                        valueCodeableConcept:
+                          coding:
+                          - system: https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1
+                            code: '01'
+                            display: Number present and verified
+                          text: Number present and verified
+                      system: https://fhir.nhs.uk/Id/nhs-number
+                      value: '9989453456'
+                  taken: y
+                  note:
+                  - authorReference:
+                      identifier:
+                        system: https://fhir.hl7.org.uk/Id/gmc-number
+                        value: 00143922
+                    time: '2023-01-24T13:29:33.7491725+00:00'
+                    text: Free text... R4 of the FHIR standard supports GitHub Flavoured Markdown (GFM)
+                  dosage:
+                  - text: 10 milligram - two times a day - oral - Swallow your capsules whole with a glass of water. DO NOT break, crush or chew them
+                    patientInstruction: Swallow your capsules whole with a glass of water. DO NOT break, crush or chew them
+                    timing:
+                      repeat:
+                        frequency: 1
+                        period: 2
+                        periodUnit: d
+                        when:
+                        - C
+                    route:
+                      coding:
+                      - system: https://snomed.info/sct
+                        code: '26643006'
+                      text: oral
+                    doseQuantity:
+                      value: 10
+                      unit: milligram
+                      system: https://unitsofmeasure.org
+                      code: mg
+              - resourceType: Observation
+                status: final
+                id: e461896a-b0c8-457d-9397-b276c9aec312
+                meta:
+                  versionId: '1'
+                  lastUpdated: '2023-02-14T11:58:27.1516395+00:00'
+                  profile:
+                  - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Observation-1
+                comment: Patient has high Temperature
+                subject:
+                  identifier:
+                    extension:
+                    - valueCodeableConcept:
+                        text: Number present and verified
+                        coding:
+                        - display: Number present and verified
+                          code: '01'
+                          system: https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1
+                      url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1
+                    system: https://fhir.nhs.uk/Id/nhs-number
+                    value: '9989453456'
+                valueQuantity:
+                  code: cel
+                  unit: C
+                  system: http://unitsofmeasure.org
+                  value: 40
+                effectiveDateTime: '2023-02-14T11:58:27.153001+00:00'
+                performer:
+                - identifier:
+                    system: https://fhir.hl7.org.uk/Id/gmc-number
+                    value: 00143922
+                issued: '2023-02-14T11:58:27.1530896+00:00'
+                category:
+                - text: Vital signs
+                  coding:
+                  - display: vital-signs
+                    code: Vital signs
+                    system: http://terminology.hl7.org/CodeSystem/observation-category
+                code:
+                  text: High Temperature
+                  coding:
+                  - display: High Temperature
+                    code: '285717004'
+                    system: http://snomed.info/sct
+                context:
+                  reference: visit-00425123
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/fhir+json:
+              schema:
+                type: object
+                description: 'FILL THIS OUT
+
+                  '
+              examples:
+                example:
+                  description: Succesful bundle post
+                  value:
+                    resourceType: Bundle
+                    id: e461896x-b0cx-4x7d-9344-b276c9aec312
+                    meta:
+                      versionId: '1'
+                      lastUpdated: '2023-02-14T11:58:27.1516395+00:00'
+                    type: collection
+                    entry:
+                    - resource:
+                        resourceType: Patient
+                        id: e461896a-b0c8-457d-9397-b276c9aec312
+                        meta:
+                          versionId: '1'
+                          lastUpdated: '2023-02-14T11:58:27.1516395+00:00'
+                          profile:
+                          - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Patient-1
+                        active: true
+                        name:
+                        - use: official
+                          family: Test
+                          given:
+                          - Roger
+                        gender: male
+                        birthDate: '1975-12-25'
+                    - resource:
+                        meta:
+                          versionId: '1'
+                          lastUpdated: '2023-01-24T11:58:38.4899643+00:00'
+                          profile:
+                          - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Encounter-1
+                        resourceType: Encounter
+                        reason:
+                        - coding:
+                          - extension:
+                            - extension:
+                              - valueId: '86591008'
+                                url: descriptionId
+                              - valueString: PharmacyVisit
+                                url: descriptionDisplay
+                              url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-coding-sctdescid
+                            display: Upset Stomach
+                            system: http://snomed.info/sct
+                            code: '271681002'
+                        type:
+                        - coding:
+                          - display: Face to face encounter
+                            code: '1258986006'
+                            system: http://snomed.info/sct
+                        subject:
+                          identifier:
+                            extension:
+                            - valueCodeableConcept:
+                                text: Number present and verified
+                                coding:
+                                - display: Number present and verified
+                                  code: '01'
+                                  system: https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1
+                              url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1
+                            system: https://fhir.nhs.uk/Id/nhs-number
+                            value: '9989453456'
+                        participant:
+                        - period:
+                            start: '2022-12-25T14:01:31+00:00'
+                          individual:
+                            identifier:
+                              system: https://fhir.hl7.org.uk/Id/gmc-number
+                              value: '0054272'
+                          type:
+                          - text: recorder
+                            coding:
+                            - system: https://fhir.nhs.uk/STU3/ValueSet/GPConnect-ParticipantType-1
+                              code: REC
+                        period:
+                          start: '2022-12-25T10:42:12+00:00'
+                        identifier:
+                        - system: https://hospital.example/visit-number
+                          value: visit-00425123
+                    - resource:
+                        resourceType: MedicationStatement
+                        id: 359d0a53-f1ef-4c0b-9d58-01cabbc48413
+                        meta:
+                          versionId: '1'
+                          lastUpdated: '2023-01-24T13:29:33.7462714+00:00'
+                          profile:
+                          - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-MedicationStatement-1
+                        extension:
+                        - url: https://fhir.nhs.uk/STU3/StructureDefinition/Extension-CareConnect-GPC-PrescribingAgency-1
+                          valueCodeableConcept:
+                            coding:
+                            - system: https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-PrescribingAgency-1
+                              code: prescribed-by-another-organisation
+                            text: Prescribed by another organisation
+                        identifier:
+                        - system: https://hospital.example/medication-statement
+                          value: rx-0281156
+                        context:
+                          identifier:
+                            system: https://hospital.example/visit-number
+                            value: visit-00425123
+                        status: completed
+                        medicationCodeableConcept:
+                          coding:
+                            code: '39732311000001104'
+                            system: https://dmd.nhs.uk
+                            display: Amoxicillin 250mg capsules
+                        effectivePeriod:
+                          start: '2023-01-20'
+                          end: '2023-01-27'
+                        dateAsserted: '2023-01-24T13:29:33.7477005+00:00'
+                        informationSource:
+                          identifier:
+                            system: https://fhir.nhs.uk/Id/ods-organization-code
+                            value: RFR
+                        subject:
+                          identifier:
+                            extension:
+                            - url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1
+                              valueCodeableConcept:
+                                coding:
+                                - system: https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1
+                                  code: '01'
+                                  display: Number present and verified
+                                text: Number present and verified
+                            system: https://fhir.nhs.uk/Id/nhs-number
+                            value: '9989453456'
+                        taken: y
+                        note:
+                        - authorReference:
+                            identifier:
+                              system: https://fhir.hl7.org.uk/Id/gmc-number
+                              value: 00143922
+                          time: '2023-01-24T13:29:33.7491725+00:00'
+                          text: Free text... R4 of the FHIR standard supports GitHub Flavoured Markdown (GFM)
+                        dosage:
+                        - text: 10 milligram - two times a day - oral - Swallow your capsules whole with a glass of water. DO NOT break, crush or chew them
+                          patientInstruction: Swallow your capsules whole with a glass of water. DO NOT break, crush or chew them
+                          timing:
+                            repeat:
+                              frequency: 1
+                              period: 2
+                              periodUnit: d
+                              when:
+                              - C
+                          route:
+                            coding:
+                            - system: https://snomed.info/sct
+                              code: '26643006'
+                            text: oral
+                          doseQuantity:
+                            value: 10
+                            unit: milligram
+                            system: https://unitsofmeasure.org
+                            code: mg
+                    - resourceType: Observation
+                      status: final
+                      id: e461896a-b0c8-457d-9397-b276c9aec312
+                      meta:
+                        versionId: '1'
+                        lastUpdated: '2023-02-14T11:58:27.1516395+00:00'
+                        profile:
+                        - https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-GPC-Observation-1
+                      comment: Patient has high Temperature
+                      subject:
+                        identifier:
+                          extension:
+                          - valueCodeableConcept:
+                              text: Number present and verified
+                              coding:
+                              - display: Number present and verified
+                                code: '01'
+                                system: https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-NHSNumberVerificationStatus-1
+                            url: https://fhir.hl7.org.uk/STU3/StructureDefinition/Extension-CareConnect-NHSNumberVerificationStatus-1
+                          system: https://fhir.nhs.uk/Id/nhs-number
+                          value: '9989453456'
+                      valueQuantity:
+                        code: cel
+                        unit: C
+                        system: http://unitsofmeasure.org
+                        value: 40
+                      effectiveDateTime: '2023-02-14T11:58:27.153001+00:00'
+                      performer:
+                      - identifier:
+                          system: https://fhir.hl7.org.uk/Id/gmc-number
+                          value: 00143922
+                      issued: '2023-02-14T11:58:27.1530896+00:00'
+                      category:
+                      - text: Vital signs
+                        coding:
+                        - display: vital-signs
+                          code: Vital signs
+                          system: http://terminology.hl7.org/CodeSystem/observation-category
+                      code:
+                        text: High Temperature
+                        coding:
+                        - display: High Temperature
+                          code: '285717004'
+                          system: http://snomed.info/sct
+                      context:
+                        reference: visit-00425123
+        4XX:
+          description: "An error occured as follows:\n\n\n| HTTP Status | Spine error code   | Description\n|-------------|--------------------|------------\n| 400         | INVALID_RESOURCE   | \n  400         | MISSING_FIELD      |\n  400         | MISSING_RESOURCE   |\n| 400         | INVALID_NHS_NUMBER |\n| 422         | UNPROCESSABLE      | \n"
+          content:
+            application/fhir+json:
+              schema:
+                type: object
+                description: Link
+              examples:
+                example:
+                  value:
+                    resourceType: OperationOutcome
+                    meta:
+                      profile:
+                      - https://fhir.hl7.org.uk/StructureDefinition/GPConnect-OperationOutcome-1
+                    issue:
+                    - severity: error
+                      code: value
+                      details:
+                        coding:
+                        - system: https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1
+                          code: INVALID_NHS_NUMBER
+                          display: Invalid NHS Number
+      tags:
+      - FHIR
