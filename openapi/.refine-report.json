@@ -1,0 +1,26 @@
+{
+  "provider": "gp-connect",
+  "sources": [
+    "gp-connect-appointment-api-openapi.yml",
+    "gp-connect-documents-api-openapi.yml",
+    "gp-connect-fhir-api-openapi.yml",
+    "gp-connect-meta-api-openapi.yml",
+    "gp-connect-patient-api-openapi.yml",
+    "gp-connect-slot-api-openapi.yml",
+    "gp-connect-task-api-openapi.yml"
+  ],
+  "outputs": [
+    "gp-connect-appointment-api-openapi.yml",
+    "gp-connect-documents-api-openapi.yml",
+    "gp-connect-fhir-api-openapi.yml",
+    "gp-connect-meta-api-openapi.yml",
+    "gp-connect-patient-api-openapi.yml",
+    "gp-connect-slot-api-openapi.yml",
+    "gp-connect-task-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
