@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured-fhir Appointment Slot API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Slot",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for free slots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/Slot",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "start",
+                "value": "ge2020-05-09",
+                "type": "query",
+                "description": "Slot start date/time"
+              },
+              {
+                "name": "end",
+                "value": "le2020-05-10",
+                "type": "query",
+                "description": "Slot end date/time"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Slot status"
+              },
+              {
+                "name": "_include",
+                "value": "",
+                "type": "query",
+                "description": "Include"
+              },
+              {
+                "name": "_include:recurse",
+                "value": "",
+                "type": "query",
+                "description": "Schedule:actor:Practitioner Include Practitioner resources referenced in Schedule:actor\nSchedule:actor:Location Include Location resources referenced in Schedule:actor\nLocation:managingOrganization Include managingOrganization resources referenced in Location\n"
+              },
+              {
+                "name": "searchFilter",
+                "value": "",
+                "type": "query",
+                "description": "Search filter"
+              }
+            ]
+          },
+          "docs": "Search the patient's GP system for free slots that are available for appointment bookings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

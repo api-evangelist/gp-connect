@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured-fhir Appointment Patient API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Access a structured record relating to a patient.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/Patient/$gpc.getstructuredrecord",
+            "headers": [
+              {
+                "name": "Ssp-To",
+                "value": ""
+              },
+              {
+                "name": "Ssp-From",
+                "value": ""
+              },
+              {
+                "name": "Ssp-InteractionID",
+                "value": ""
+              },
+              {
+                "name": "Ssp-TraceID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## Overview \nThis end point returns a patient's record in structured format using FHIR Operations. It returns a Bundle.\nThe request body must be a Parameters resource.\n"
+        },
+        {
+          "info": {
+            "name": "Read a patient's appointments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/Patient/:id/Appointment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "9000000009",
+                "type": "path",
+                "description": "The patient's NHS number. The primary identifier of a patient, unique within NHS England and Wales. Always 10 digits and must be a [valid NHS number](https://www.datadictionary.nhs.uk/attributes/nhs_number.html)."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Appointment start/end dates. Default values show a query for appointments on or after 2020-05-09 and on or before 2020-05-19."
+              },
+              {
+                "name": "_include:recurse",
+                "value": "",
+                "type": "query",
+                "description": "Appointment:actor:Practitioner Include Practitioner resources referenced in Appointment:actor\nAppointment:actor:Location Include Location resources referenced in Appointment:actor\n"
+              },
+              {
+                "name": "past-appt-limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of past appointments to return in query, starting at the date given in the \"le\" portion of the start parameter and working backwards. Parameter is optional, if no value supplied then no limits are applied."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The type of status to search: you can find valid values [here](https://simplifier.net/packages/hl7.fhir.r4.core/4.0.1/files/83480)\n"
+              }
+            ]
+          },
+          "docs": "Retrieve all appointments for the patient within a defined time-frame."
+        },
+        {
+          "info": {
+            "name": "Search for a patients documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/Patient/:id/DocumentReference",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the patient obtained by using the /documents/Patient/{id} endpoint using their NHS Number. This can vary depending on GP provider system."
+              },
+              {
+                "name": "patientNHSNumber",
+                "value": "",
+                "type": "query",
+                "description": "The NHS number of the patient for whom documents are being searched."
+              },
+              {
+                "name": "_include",
+                "value": "",
+                "type": "query",
+                "description": "DocumentReference:subject:Patient - Include Patient resources referenced within the returned DocumentReference resources\nDocumentReference:custodian:Organization - Details of organisations that are custodians for the documents that are returned in DocumentReference resources\nDocumentReference:author:Organization - Details of organisations that authored the documents that are returned in DocumentReference resources\nDocumentReference:author:Practitioner - Details of who/what authored the documents that are returned in DocumentReference resources\n"
+              },
+              {
+                "name": "_revinclude:recurse",
+                "value": "",
+                "type": "query",
+                "description": "PractitionerRole:practitioner Include PractitionerRole resources referenced from matching Practitioner resources"
+              },
+              {
+                "name": "created",
+                "value": "",
+                "type": "query",
+                "description": "The created date <eq|ge|le>yyyy-mm-dd. To use a range use authored-on=geyyyy-mm-dd&authored-on=leyyyy-mm-dd\n"
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Who/what authored the documents that are returned\n"
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "The description of the document that is returned\n"
+              }
+            ]
+          },
+          "docs": "Use this endpoint to search for a patients documents from a GP Practice.\n\nUse the patient id obtained from the  /documents/Patient/{id} endpoint (NOT NHS Number).   The NHS number of the patient is also required as a query string parameter.\n\nDetails on the included parameters can be found below. These parameters must be used to reduce the number of API calls.\n"
+        },
+        {
+          "info": {
+            "name": "Get prescription issue details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/Patient/:id/MedicationRequest",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The NHS number of the patient whose requests you are searching for\n"
+              },
+              {
+                "name": "authoredon",
+                "value": "",
+                "type": "query",
+                "description": "Date the prescription was requested, format: <eq|ge|le>YYYY-MM-DD. To use a range use authoredon=geYYYY-MM-DD&authoredon=leYYYY-MM-DD\n"
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "This will either be a uuid OR an EPS prescription identifier, this should only be used to obtain specific EPS orders using their identifier.\n\nEPS prescription Identifier for the prescription. Searches for EPS prescriptions need to provide a data type of `https://fhir.nhs.uk/Id/prescription-order-number` in the format `<data-type>|<prescription-identifier>`\n"
+              },
+              {
+                "name": "intent",
+                "value": "",
+                "type": "query",
+                "description": "Intent of the MedicationRequest, will either be plan or order. If plan is selected only MedicationRequest's with intent of plan will be returned.\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The type of status to search: you can find valid values [here](https://simplifier.net/guide/gp-connect--patient-facing-services--prescriptions/Home/FHIR-Assets/All-Assets/Profiles/UKCore-MedicationRequest?version=0.1.1-private-beta#status)\n"
+              }
+            ]
+          },
+          "docs": "## Overview\nUse this endpoint to get details of previous prescription issues.\nThe request must include the following parameter:\n\n* patient\n\nThe request can optionally include include one of following parameters:\n\n* authoredon\n\n* identifier\n\n* intent\n\n* status\n\nEach MedicationRequest with intent of order must reference a MedicationRequest with intent plan within the basedOn element.\n## Use cases\nUse cases covered by this endpoint include:\n\n* to get information about previously prescribed medicati"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured-fhir Appointment API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Appointment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Book an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/Appointment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Book an appointment using the patient details and a retreived slot details."
+        },
+        {
+          "info": {
+            "name": "Get details of a single appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/Appointment/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1",
+                "type": "path",
+                "description": "Appointment logical identifier"
+              },
+              {
+                "name": "_include:recurse",
+                "value": "",
+                "type": "query",
+                "description": "Appointment:actor:Practitioner Include Practitioner resources referenced in Appointment:actor\nAppointment:actor:Location Include Location resources referenced in Appointment:actor\n"
+              }
+            ]
+          },
+          "docs": "Get a detailed view of a single patient appointment using the appointment id."
+        },
+        {
+          "info": {
+            "name": "Cancel an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/Appointment/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "1",
+                "type": "path",
+                "description": "Appointment logical identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel a specific appointment using the appointment id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

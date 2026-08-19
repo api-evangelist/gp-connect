@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured- Appointment FHIR API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FHIR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post an update to the patients record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/FHIR/STU3/Bundle",
+            "headers": [
+              {
+                "name": "SSP-Trace-ID",
+                "value": ""
+              },
+              {
+                "name": "SSP-From",
+                "value": ""
+              },
+              {
+                "name": "SSP-To",
+                "value": ""
+              },
+              {
+                "name": "SSP-InteractionID",
+                "value": ""
+              },
+              {
+                "name": "EncounterId",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post an update to the patients record"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

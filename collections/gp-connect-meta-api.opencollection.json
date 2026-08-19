@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured-fhir Appointment Meta API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get update record FHIR capability statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/meta",
+            "headers": [
+              {
+                "name": "SSP-Trace-ID",
+                "value": ""
+              },
+              {
+                "name": "SSP-From",
+                "value": ""
+              },
+              {
+                "name": "SSP-To",
+                "value": ""
+              },
+              {
+                "name": "SSP-InteractionID",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get update record FHIR capability statement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

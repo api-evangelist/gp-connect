@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured-fhir Appointment Task API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get requested prescription reorders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/Task",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "patient",
+                "value": "",
+                "type": "query",
+                "description": "The NHS number of the patient whose requests you are searching for\n"
+              },
+              {
+                "name": "_include",
+                "value": "",
+                "type": "query",
+                "description": "Task:focus:MedicationRequest - Include MedicationRequest resources referenced within the returned Task resources, further information around the benefits and using this parameter can be found [here](https://simplifier.net/guide/gp-connect--patient-facing-services--prescriptions/Home/Build/How-to-determine-the-medication-the-request-belongs-to?version=0.1.1-private-beta).\n"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the Task itself\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The type of status to search: you can find valid values [here](https://simplifier.net/guide/gp-connect--patient-facing-services--prescriptions/Home/FHIR-Assets/All-Assets/Profiles/UKCore-Task?version=0.1.1-private-beta#status).\n"
+              },
+              {
+                "name": "authored-on",
+                "value": "",
+                "type": "query",
+                "description": "Date the prescription was requested, format: <eq|ge|le>YYYY-MM-DD. To use a range use authored-on=geYYYY-MM-DD&authored-on=leYYYY-MM-DD\n"
+              }
+            ]
+          },
+          "docs": "## Overview\n\nUse this end point to check the status of past and current prescription reorder requests.\n\nIf a Patient identifier is provided past and present requests will be returned for the patient inside as multiple Task rescources inside a Bundle resource.\n\nIf just the id of a specific request is passed a singular Task resource will be returned inside a Bundle resource.\n\nIf the prescription request is then sent to EPS to be fulfilled the EPS id of the new MedicationRequest must be included in"
+        },
+        {
+          "info": {
+            "name": "Request a repeat prescription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/Task",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "## Overview\n\nUse this end point to create a request for a repeat prescription.\n\nThe same end point can be used to request a prescription to a one off pharmacy nomination - the ODS code is set in Task.input using code [preferred-performer](https://simplifier.net/guide/nhs-england-implementation-guide-stu1/Home/Terminology/All-CodeSystems/CodeSystem-England-PFSPrescriptionOrderingParameter?version=1.1.0).\n\nFor this, send a Task with a focus of a prior MedicationRequest which has an intent of plan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gp-connect-access-record-structured-fhir Appointment Documents API",
+    "version": "Computed and injected at build time by `scripts/set_version.py`"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find a patient by NHS number on the Access Document FHIR server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/documents/Patient/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The NHS Number of the patient you are searching for."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to find a Patient.\n\nIf searching for a Patient's document this endpoint must be used to obtain the correct patient id from the provider system.\n\nNo request body is required for this endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Get a specific document from a GP practice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/documents/Binary/:id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "X-Correlation-ID",
+                "value": ""
+              },
+              {
+                "name": "X-Request-ID",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the document you are searching for."
+              },
+              {
+                "name": "patientNHSNumber",
+                "value": "",
+                "type": "query",
+                "description": "The NHS number of the patient to whom the document belongs."
+              }
+            ]
+          },
+          "docs": "Use this endpoint to retrieve a specific document using the id.  The NHS number of the patient is also required as a query string parameter. No request body is required for this endpoint.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
