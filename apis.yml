@@ -30,7 +30,7 @@ tags:
   - FHIR R4
 created: '2026-06-13'
 modified: '2026-06-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: >-
   GP Connect is a national NHS England interoperability programme that enables authorised
   clinical and patient-facing systems to securely access and update patient records held
