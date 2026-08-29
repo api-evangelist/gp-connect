@@ -1,0 +1,35 @@
+slug: gp-connect
+provider: GP Connect
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Appointment
+  spec_file: gp-connect-appointment-api-openapi.yml
+  capability_id: BC-2800.10
+  capability_id_l1: BC-2800
+  capability_name: Scheduling & Appointment Management
+  confidence: 0.95
+  evidence: POST /Appointment  Book an appointment; PUT /Appointment/{id}  Cancel an appointment
+  reason: Operations book, retrieve and cancel GP practice appointments — unambiguously appointment scheduling
+    within patient access.
+- tag: Documents
+  spec_file: gp-connect-documents-api-openapi.yml
+  capability_id: BC-2900.60
+  capability_id_l1: BC-2900
+  capability_name: Healthcare Interoperability Operations
+  confidence: 0.7
+  evidence: GET /documents/Binary/{id}  Get a specific document from a GP practice; 'access structured
+    and coded information from a patient's GP practice record to consume in a patient facing service'
+  reason: Read-only retrieval of documents from the GP record over a FHIR server for a patient-facing
+    consumer — operation of FHIR endpoints and patient-initiated record sharing. Could also be read as
+    record access/release of information, hence moderate confidence.
