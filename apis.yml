@@ -81,7 +81,7 @@ apis:
   tags:
   - FHIR STU3
   - ITK3
-  - MESH
+  - Mesh
   - Documents
   - Messaging
   - Clinical Access
