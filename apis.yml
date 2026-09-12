@@ -447,6 +447,8 @@ apis:
   - type: GitHub
     url: https://github.com/NHSDigital/gp-connect-prescriptions-management-fhir
 common:
+  - type: Website
+    url: https://www.nhs.uk/
   - type: CapabilityMap
     url: capabilities/gp-connect-capability-edges.yml
     name: GP Connect Business Capability Map
