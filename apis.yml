@@ -35,6 +35,19 @@ tags:
   - Appointments
   - Prescriptions
   - Interoperability
+  - United Kingdom
+  - Patient Records
+  - Electronic Health Records
+  - FHIR STU3
+  - FHIR R4
+tags_raw:
+  - NHS
+  - FHIR
+  - Healthcare
+  - GP Records
+  - Appointments
+  - Prescriptions
+  - Interoperability
   - UK
   - Patient Records
   - Electronic Health Records
@@ -305,6 +318,8 @@ apis:
   humanURL: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir
   baseURL: https://sandbox.api.service.nhs.uk/gp-connect-access-record-structured-fhir
   tags:
+  - Patients
+  tags_raw:
   - Patient
   properties:
   - type: OpenAPI
