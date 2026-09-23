@@ -5,276 +5,10 @@ info:
   description: '## Overview
 
 
-    ![GP Connect Patient Facing Prescriptions Management API Overview](https://raw.githubusercontent.com/NHSDigital/gp-connect-prescriptions-management-fhir/master/specification/images/overview-diagram.svg)
+    !GP Connect Patient Facing Prescriptions Management API Overview
 
 
-    Use this API to manage a patient''s prescriptions as held by their GP practice.
-
-
-    You can:
-
-
-    * request a new instance of a repeat prescription
-
-
-    * check the status of a current prescription request
-
-
-    * request a new instance of a repeat prescription to a one off nomination pharmacy
-
-
-    The end user must be a patient who is:
-
-
-    *  registered with the GP practice
-
-
-    *  registered with NHS login to P9 identity verification level
-
-
-    For example:
-
-
-    * a patient can check the status of a current prescription request and request a new instance of a repeat prescription
-
-
-    ## Who can use this API
-
-
-    This API can be used by developers of clinical systems that support clinicans delivering direct care. It is a patient-facing API.
-
-
-    This API:
-
-
-    * is intended only for use by patient-facing applications
-
-
-    * is intended only for non-clinical use
-
-
-    * can only be used where there is a legal basis to do so
-
-
-    Make sure you have a valid use case before you go too far with development. To do this, contact us.
-
-
-    You must do this before you can go live (see Onboarding below).
-
-
-    ### Prerequisites
-
-
-    #### Information governance (IG)
-
-
-    You must:
-
-
-    * be compliant with the GP Connect Direct Care API Information Governance Model
-
-
-    #### Clinical safety
-
-
-    You must:
-
-
-    * have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160. For more on clinical risk management, visit Clinical risk management standards
-
-
-    ## Related APIs
-
-
-    * [Electronic Prescription Service - FHIR API](https://digital.nhs.uk/developer/api-catalogue/electronic-prescription-service-fhir) - use this API to issue requested prescriptions as electronic prescriptions.
-
-
-    * [Electronic Prescription Service Tracker - REST API](https://digital.nhs.uk/developer/api-catalogue/spine-electronic-prescription-service-tracker-rest) - use this API to track the dispensing status of EPS prescriptions once they leave the GP system.
-
-
-    * [GP Connect (Patient Facing) User Permissions API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-user-permissions) - use this API to manage a patient''s permissions as held by the GP practice systems.
-
-
-    * [GP Connect (Patient Facing) Access Record - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir) - use this API to manage a patient''s medical record from the GP practice systems.
-
-
-    * [GP Connect Access Record: Structured - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir) - use this API for clinical access to the record, including structured medications linked to other elements of the patient record.
-
-
-
-    ## API status and roadmap
-
-
-    This API is in [development](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses)
-
-
-    To see our roadmap or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/suggestions/341619/gp-connect-prescriptions-management-fhir).
-
-
-    If you have any other queries, [contact us](https://digital.nhs.uk/developer/help-and-support)
-
-
-    ## Service level
-
-
-    This API is a silver service, meaning it is operational 24 hours a day, 365 days a year but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
-
-
-    For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
-
-
-    ## Technology
-
-
-    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#basic-rest).
-
-
-    It conforms to the [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#fhir) global standard for health care data exchange, specifically to [FHIR R4 (v4.0.1)](https://hl7.org/fhir/r4/), except that it does not support the [capabilities](http://hl7.org/fhir/R4/http.html#capabilities) interaction.
-
-
-    It includes some country-specific FHIR extensions, which are built against [FHIR UK Core, specifically [UKcore.stu2 1.1.3](https://simplifier.net/guide/uk-core-implementation-guide-stu2?version=1.1.3).
-
-
-    You do not need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
-
-
-    * resource names are capitalised and singular, for example `/Patient` not `/patients`
-
-
-    * array names are singular, for example `line` not `lines` for address lines
-
-
-    * data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an `extension` object
-
-
-    There are [libraries and software development kits available](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#fhir-libraries-and-sdks) to help with FHIR API integration.
-
-
-    ### Resources
-
-
-    Use the [GP Connect Prescriptions Management Implementation Guide](https://simplifier.net/guide/gp-connect--patient-facing-services--prescriptions?version=0.1.1-private-beta) to assist with your integration.
-
-
-    This is the FHIR specification for GP Connect Prescriptions.
-
-
-    ## Network access
-
-
-    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
-
-
-    For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
-
-
-    ## Security and authorisation
-
-
-    This API is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present and authenticated to use it.
-
-
-    The end user must be:
-
-
-    * a patient
-
-
-    * authenticated with NHS login to P9 identity verification level
-
-
-    The API uses Open ID Connect to authenticate the end user and OAuth 2.0 to authorise the calling system. It supports the following security pattern using NHS login:
-
-
-    * [User-restricted RESTful APIs - NHS login separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-login-separate-authentication-and-authorisation)
-
-
-    ## Environments and testing
-
-
-    |Environment|Base URL|
-
-    |-----------|--------|
-
-    |Sandbox|`https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/prescriptions-management-fhir/FHIR/R4`|
-
-    |Integration Testing|`Not yet available`|
-
-    |Production|`Not yet available`|
-
-
-    ### Sandbox testing (Not yet available)
-
-
-    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
-
-
-    * is for early developer testing
-
-
-    * only covers a limited set of scenarios
-
-
-    * is stateless, so it does not store data
-
-
-    * is open access, so does not allow you to test authorisation
-
-
-    For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
-
-
-    Alternatively, you can try out the sandbox using our Postman collection:
-
-
-    [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/34036044-3c90d3e4-24ec-4a09-867e-26da1516ee61?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D34036044-3c90d3e4-24ec-4a09-867e-26da1516ee61%26entityType%3Dcollection%26workspaceId%3Dbad72f85-20d6-41c3-bd55-f30bf83f8c63)
-
-
-    ### Integration testing (not yet available)
-
-
-    Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
-
-
-    * is for formal integration testing
-
-
-    * is stateful, so it does persist data
-
-
-    * includes authorisation
-
-
-    For more details see [integration testing with our RESTful APIs](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis).
-
-
-    ## Onboarding
-
-
-    We are hoping to make the assurance process as lightweight and as self-service as possible.
-
-
-    ## Errors
-
-
-    We use standard HTTP status codes to show whether an API request succeeded or not. They are usually in the range:
-
-
-    - 200 to 299 if it succeeded, including code 202 if it was accepted by an API that needs to wait for further action
-
-
-    - 400 to 499 if it failed because of a client error by your application
-
-
-    - 500 to 599 if it failed because of an error on our server
-
-
-    Errors specific to each API are shown in the Endpoints section, under Response. See our [reference guide](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes) for more on errors.
-
-
-    API Specific errors can be found [here](https://simplifier.net/guide/gp-connect--patient-facing-services--prescriptions/Home/Design/Errors-and-issues?version=0.1.1-private-beta).
-
-    '
+    Use this API to manage a patient''s prescriptions as held by their GP practice.'
   contact:
     name: gp-connect/patient-facing/prescriptions-management-fhir/FHIR/R4 API Support
     url: https://digital.nhs.uk/developer/help-and-support
@@ -293,7 +27,39 @@ paths:
     post:
       operationId: post-task
       summary: Request a repeat prescription
-      description: "## Overview\n\nUse this end point to create a request for a repeat prescription.\n\nThe same end point can be used to request a prescription to a one off pharmacy nomination - the ODS code is set in Task.input using code [preferred-performer](https://simplifier.net/guide/nhs-england-implementation-guide-stu1/Home/Terminology/All-CodeSystems/CodeSystem-England-PFSPrescriptionOrderingParameter?version=1.1.0).\n\nFor this, send a Task with a focus of a prior MedicationRequest which has an intent of plan. This can be obtain by using the GET `/MedicationRequest/Patient/` endpoint within this API.\n\n## Use cases\nUse cases covered by this endpoint include:\n\n* request the next issue of a repeat prescription\n\n* request the next issue of a repeat prescription to a one off pharmacy nomination\n\n* request  \n\n## Request workflow\nWhen a request is made it is added to the GP system's workflow and processed at some point in the future.\nAt this point the status of the Task resource will be updated as it passes through the GP system's workflow. \nIf a request is rejected the statusReason element of the Task resource will be populated with the reason to be displayed to the patient.\n"
+      description: '## Overview
+
+
+        Use this end point to create a request for a repeat prescription.
+
+
+        The same end point can be used to request a prescription to a one off pharmacy nomination - the ODS code is set in Task.input using code preferred-performer.
+
+
+        For this, send a Task with a focus of a prior MedicationRequest which has an intent of plan. This can be obtain by using the GET `/MedicationRequest/Patient/` endpoint within this API.
+
+
+        ## Use cases
+
+        Use cases covered by this endpoint include:
+
+
+        * request the next issue of a repeat prescription
+
+
+        * request the next issue of a repeat prescription to a one off pharmacy nomination
+
+
+        * request
+
+
+        ## Request workflow
+
+        When a request is made it is added to the GP system''s workflow and processed at some point in the future.
+
+        At this point the status of the Task resource will be updated as it passes through the GP system''s workflow.
+
+        If a request is rejected the statusReason element of the Task resource will be populated with the reason to be displayed to the patient.'
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
       - $ref: '#/components/parameters/CorrelationID'
@@ -431,7 +197,44 @@ paths:
     get:
       operationId: get-task
       summary: Get requested prescription reorders
-      description: "## Overview\n\nUse this end point to check the status of past and current prescription reorder requests.\n\nIf a Patient identifier is provided past and present requests will be returned for the patient inside as multiple Task rescources inside a Bundle resource.\n\nIf just the id of a specific request is passed a singular Task resource will be returned inside a Bundle resource.\n\nIf the prescription request is then sent to EPS to be fulfilled the EPS id of the new MedicationRequest must be included in the output element of the Task resource. \n\nYou must provide at least one of the following parameters:\n\n* id\n\n* patient\n## Use cases\nUse cases covered by this endpoint include:\n\n* present inflight prescription requests to the Patient\n\n* allow the patient to check the status of a specific request\n\n* obtain the EPS id of a prescription reorder request that has been sent to be dispensed\n\n* obtain a list of requests to enable the patient to send a cancellation\n"
+      description: '## Overview
+
+
+        Use this end point to check the status of past and current prescription reorder requests.
+
+
+        If a Patient identifier is provided past and present requests will be returned for the patient inside as multiple Task rescources inside a Bundle resource.
+
+
+        If just the id of a specific request is passed a singular Task resource will be returned inside a Bundle resource.
+
+
+        If the prescription request is then sent to EPS to be fulfilled the EPS id of the new MedicationRequest must be included in the output element of the Task resource.
+
+
+        You must provide at least one of the following parameters:
+
+
+        * id
+
+
+        * patient
+
+        ## Use cases
+
+        Use cases covered by this endpoint include:
+
+
+        * present inflight prescription requests to the Patient
+
+
+        * allow the patient to check the status of a specific request
+
+
+        * obtain the EPS id of a prescription reorder request that has been sent to be dispensed
+
+
+        * obtain a list of requests to enable the patient to send a cancellation'
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
       - $ref: '#/components/parameters/CorrelationID'
@@ -881,19 +684,6 @@ paths:
       - Task
 components:
   parameters:
-    BearerAuthorization:
-      in: header
-      name: Authorization
-      description: 'An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-
-        Required in all environments except sandbox.
-
-        '
-      required: true
-      schema:
-        type: string
-        format: ^Bearer\ [[:ascii:]]+$
-        example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
     RequestID:
       in: header
       name: X-Request-ID
@@ -916,6 +706,19 @@ components:
         type: string
         pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+    BearerAuthorization:
+      in: header
+      name: Authorization
+      description: 'An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+
+        Required in all environments except sandbox.
+
+        '
+      required: true
+      schema:
+        type: string
+        format: ^Bearer\ [[:ascii:]]+$
+        example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
     CorrelationID:
       in: header
       name: X-Correlation-ID

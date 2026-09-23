@@ -1,274 +1,14 @@
 openapi: 3.2.0
 info:
-  title: gp-connect/patient-facing/access-record-fhir/FHIR/STU3 Documents API
+  title: gp-connect/patient-facing/access-record-fhir/FHIR/STU3…
   version: Computed and injected at build time by `scripts/set_version.py`
   description: '## Overview
 
 
-    ![GP Connect Patient Facing Access Record FHIR Overview](https://raw.githubusercontent.com/NHSDigital/gp-connect-access-record-fhir/master/specification/images/overview_diagram.svg)
+    !GP Connect Patient Facing Access Record FHIR Overview
 
 
-    Use this API to access structured and coded information from a patient''s GP practice record to consume in a patient facing service. The API accesses GP principal supplier systems and provides a consistent interface and data model.
-
-
-    You can retrieve patient record data for the following:
-
-
-    - medications
-
-    - allergies
-
-    - immunisations
-
-    - consultations
-
-    - problems
-
-    - investigations
-
-    - reviewed attachments/documents
-
-
-    You cannot currently use this API to:
-
-
-    - write back to the GP record
-
-
-    Providers of this API must ensure that consultations with draft status, diary entries, unfiled test results and unreviewed documents are **NOT** returned.
-
-
-    The level of detail returned is in accordance with the patient''s permission level that is set at their GP practice, further detail surrounding this can be found [here](https://simplifier.net/guide/GP-Connect-Patient-Facing-Access-Record/Home/Build/Permission-Levels?version=current).
-
-
-    ## Who can use this API
-
-
-    This API can be used by developers of patient facing systems that support patients gaining access to their GP practice medical record.
-
-
-    This API:
-
-
-    * is intended only for use by patient-facing applications
-
-
-    * is intended only for non-clinical use
-
-
-    * can only be used where there is a legal basis to do so
-
-
-    Make sure you have a valid use case before you go too far with development. To do this, contact us.
-
-
-    You must do this before you can go live (see Onboarding below).
-
-
-    ### Prerequisites
-
-
-    #### Information governance (IG)
-
-
-    You must:
-
-
-    * be compliant with the GP Connect Direct Care API Information Governance Model
-
-
-    #### Clinical safety
-
-
-    You must:
-
-
-    * have a clinical safety officer (CSO) who is responsible for DCB0129 and, if necessary, DCB0160. For more on clinical risk management, visit Clinical risk management standards
-
-
-    ## Related APIs
-
-
-    The following APIs are related to this API:
-
-
-    * [GP Connect (Patient Facing) User Permissions API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-user-permissions) - use this API to manage a patient''s permissions as held by the GP practice systems.
-
-
-    * [GP Connect (Patient Facing) Appointment Management - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir) - use this API to manage GP practice appointments.
-
-
-    * [GP Connect (Patient Facing) Prescriptions - FHIR API ](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir) - use this API to manage a patient''s prescriptions.
-
-
-    * [GP Connect Access Record: Structured - FHIR API](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir) - use this API for clinical access to the record, including structured medications linked to other elements of the patient record.
-
-
-
-    ## API status and roadmap
-
-
-    This API is [in production.](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses)
-
-
-
-    ## Service level
-
-
-    This API is a silver service, meaning it is operational 24 hours a day, 365 days a year but only supported during business hours (8am to 6pm), Monday to Friday excluding bank holidays.
-
-
-    For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
-
-
-    ## Technology
-
-    This API is a FHIR API.
-
-
-    It receives a FHIR STU3 payload.
-
-
-    For more details, see [FHIR](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#fhir).
-
-
-    ### Resources
-
-
-    Use the [GP Connect Patient Facing Access Record Implementation Guide](https://simplifier.net/guide/GP-Connect-Patient-Facing-Access-Record/Home?version=current) to assist with your integration.
-
-
-    This is the FHIR specification for GP Connect Access Record - FHIR API.
-
-
-    ## Network access
-
-
-    This API is available on the internet and, indirectly, on the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
-
-
-    For more details, see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
-
-
-    ## Security and authorisation
-
-
-    This API is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present and authenticated to use it.
-
-
-    The end user must be:
-
-
-    * a patient
-
-
-    * authenticated with NHS login to P9 identity verification level
-
-
-    The API uses Open ID Connect to authenticate the end user and OAuth 2.0 to authorise the calling system. It supports the following security pattern using NHS login:
-
-
-    * [User-restricted RESTful APIs - NHS login separate authentication and authorisation](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-login-separate-authentication-and-authorisation)
-
-
-    ## Environments and testing
-
-
-    | Purpose          | URL                                                   |
-
-    | -------          | ---                                                   |
-
-    | Sandbox          | [https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/access-record-fhir/FHIR/STU3](https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/access-record-fhir/FHIR/STU3) |
-
-    | Integration test | Not yet available                                     |
-
-    | Production       | Not yet available
-
-
-    ### Sandbox testing
-
-
-    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
-
-
-    * is for early developer testing
-
-
-    * only covers a limited set of scenarios
-
-
-    * is stateless, so it does not store data
-
-
-    * is open access, so does not allow you to test authorisation
-
-
-    For more details on sandbox testing, or to try out the sandbox using our "Try this API" feature, see the documentation for each endpoint.
-
-
-    Alternatively, you can try out the sandbox using our Postman collection:
-
-
-    [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/34036044-983959f2-6905-4ee0-91ba-5ed6990e2537?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D34036044-983959f2-6905-4ee0-91ba-5ed6990e2537%26entityType%3Dcollection%26workspaceId%3Dbad72f85-20d6-41c3-bd55-f30bf83f8c63)
-
-
-    ### Integration testing (not yet available)
-
-
-    Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
-
-
-    * is for formal integration testing
-
-
-    * is stateful, so it does persist data
-
-
-    * includes authorisation
-
-
-    For more details see [integration testing with our RESTful APIs](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis).
-
-
-    ## Onboarding
-
-
-    The GP Connect Patient Facing APIs are currently only available for New Market Entrant suppliers as data providers, and are in use with the NHS App as the consumer.
-
-
-    At the time of writing (July 2025), we are not onboarding any additional consumer suppliers to use these APIs.
-
-
-    ### Hazard log
-
-
-    The GP Connect Access Record: Structured generic hazard log shows you the clinical risks of using GP Connect functionality through a consumer system. Use it to identify the clinical risks of consuming clinical data and presenting it in your system, and record these in your own system-specific hazard log. If necessary, take mitigating action to ensure clinical safety.
-
-
-    ## Errors
-
-
-    We use standard HTTP status codes to show whether an API request succeeded or not. They are usually in the range:
-
-
-    - 200 to 299 if it succeeded, including code 202 if it was accepted by an API that needs to wait for further action
-
-
-    - 400 to 499 if it failed because of a client error by your application
-
-
-    - 500 to 599 if it failed because of an error on our server
-
-
-    Errors specific to each API are shown in the Endpoints section, under Response. See our [reference guide](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#http-status-codes) for more on errors.
-
-
-    ## Contact us
-
-
-    For help and support connecting to our APIs and to join our developer community, see [Help and support building healthcare software](https://digital.nhs.uk/developer/help-and-support).
-
-    '
+    Use this API to access structured and coded information from a patient''s GP practice record to consume in a patient facing service.'
   contact:
     name: gp-connect/patient-facing/access-record-fhir/FHIR/STU3 API Support
     url: https://digital.nhs.uk/developer/help-and-support
@@ -293,9 +33,7 @@ paths:
         If searching for a Patient''s document this endpoint must be used to obtain the correct patient id from the provider system.
 
 
-        No request body is required for this endpoint.
-
-        '
+        No request body is required for this endpoint.'
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
       - $ref: '#/components/parameters/CorrelationID'
@@ -422,9 +160,7 @@ paths:
     get:
       operationId: get-document
       summary: Get a specific document from a GP practice
-      description: 'Use this endpoint to retrieve a specific document using the id.  The NHS number of the patient is also required as a query string parameter. No request body is required for this endpoint.
-
-        '
+      description: Use this endpoint to retrieve a specific document using the id. The NHS number of the patient is also required as a query string parameter. No request body is required for this endpoint.
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
       - $ref: '#/components/parameters/CorrelationID'
@@ -500,19 +236,6 @@ paths:
       - Documents
 components:
   parameters:
-    BearerAuthorization:
-      in: header
-      name: Authorization
-      description: 'An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-
-        Required in all environments except sandbox.
-
-        '
-      required: true
-      schema:
-        type: string
-        format: ^Bearer\ [[:ascii:]]+$
-        example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
     RequestID:
       in: header
       name: X-Request-ID
@@ -538,6 +261,19 @@ components:
         type: string
         pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+    BearerAuthorization:
+      in: header
+      name: Authorization
+      description: 'An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+
+        Required in all environments except sandbox.
+
+        '
+      required: true
+      schema:
+        type: string
+        format: ^Bearer\ [[:ascii:]]+$
+        example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
     CorrelationID:
       in: header
       name: X-Correlation-ID
