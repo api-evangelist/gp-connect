@@ -4,15 +4,23 @@ name: GP Connect
 kind: company
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - nhsdigital/gp-connect-access-record-fhir
+    - nhsdigital/gp-connect-access-record-structured-fhir
+    - nhsdigital/gp-connect-appointments-management-fhir
+    - nhsdigital/gp-connect-prescriptions-management-fhir
+    - nhsdigital/gp-connect-update-record-fhir
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -39,7 +47,6 @@ tags:
   - Patient Records
   - Electronic Health Records
   - FHIR STU3
-  - FHIR R4
 tags_raw:
   - NHS
   - FHIR

@@ -13924,6 +13924,18 @@ paths:
       description: Production environment.
 components:
   parameters:
+    CorrelationID:
+      in: header
+      name: X-Correlation-ID
+      required: false
+      description: 'An optional ID which you can use to track transactions across multiple systems. It can have any value, but we recommend avoiding `.` characters.
+
+        Mirrored back in a response header.
+
+        '
+      schema:
+        type: string
+        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
     RequestID:
       in: header
       name: X-Request-ID
@@ -13956,18 +13968,6 @@ components:
         type: string
         format: ^Bearer\ [[:ascii:]]+$
         example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
-    CorrelationID:
-      in: header
-      name: X-Correlation-ID
-      required: false
-      description: 'An optional ID which you can use to track transactions across multiple systems. It can have any value, but we recommend avoiding `.` characters.
-
-        Mirrored back in a response header.
-
-        '
-      schema:
-        type: string
-        example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
     RequestID_2:
       in: header
       name: X-Request-ID
@@ -14018,12 +14018,12 @@ components:
   examples:
     GetResponsePreviousPrescriptionDetailed:
       $ref: components/examples/GetResponsePreviousPrescriptionDetailed.yaml
-    GetResponseMethotrexate:
-      $ref: components/examples/GetResponseMethotrexate.yaml
     InvalidRequestError:
       $ref: components/examples/InvalidRequestError.yaml
     GetResponseMultiplePrescriptions:
       $ref: components/examples/GetResponseMultiplePrescriptions.yaml
+    GetResponseMethotrexate:
+      $ref: components/examples/GetResponseMethotrexate.yaml
 x-refined-from:
 - gp-connect-appointments-management-fhir.yaml
 - gp-connect-patient-facing-access-record-fhir.yaml
