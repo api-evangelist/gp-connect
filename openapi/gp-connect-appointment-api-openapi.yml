@@ -503,19 +503,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    BearerAuthorization:
-      in: header
-      name: Authorization
-      description: 'An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
-
-        Required in all environments except sandbox.
-
-        '
-      required: true
-      schema:
-        type: string
-        format: ^Bearer\ [[:ascii:]]+$
-        example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
     CorrelationID:
       in: header
       name: X-Correlation-ID
@@ -547,6 +534,19 @@ components:
         type: string
         pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+    BearerAuthorization:
+      in: header
+      name: Authorization
+      description: 'An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+
+        Required in all environments except sandbox.
+
+        '
+      required: true
+      schema:
+        type: string
+        format: ^Bearer\ [[:ascii:]]+$
+        example: Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM
 x-spec-publication:
   operation-order:
   - operations:
