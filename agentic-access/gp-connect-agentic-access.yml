@@ -1,31 +1,24 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/gp-connect-appointments-management-fhir.yaml, openapi/gp-connect-patient-facing-access-record-fhir.yaml,
-  openapi/gp-connect-patient-facing-prescriptions-management-fhir.yaml, openapi/gp-connect-update-record-fhir.yaml
+source: openapi/gp-connect-appointment-api-openapi.yml, openapi/gp-connect-documents-api-openapi.yml,
+  openapi/gp-connect-fhir-api-openapi.yml, openapi/gp-connect-meta-api-openapi.yml, openapi/gp-connect-patient-api-openapi.yml,
+  openapi/gp-connect-slot-api-openapi.yml, openapi/gp-connect-task-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 14
   by_action_class:
-    connected: 9
-    acting: 5
+    acting: 4
+    connected: 10
   by_consequence:
-    read: 9
-    write: 5
+    write: 4
+    read: 10
   human_in_the_loop_required: 0
 operations:
-- path: /Slot
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /Appointment
   method: post
+  operationId: postAppointment
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -39,17 +32,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /Patient/{id}/Appointment
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /Appointment/{id}
   method: get
+  operationId: getAppointmentById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -59,22 +44,7 @@ operations:
     audit: none
 - path: /Appointment/{id}
   method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /Patient/$gpc.getstructuredrecord
-  method: post
-  operationId: get-structured-record
+  operationId: putAppointmentById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -108,6 +78,52 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /FHIR/STU3/Bundle
+  method: post
+  operationId: post-update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /meta
+  method: get
+  operationId: get-capabilitystatement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /Patient/{id}/Appointment
+  method: get
+  operationId: getPatientByIdAppointment
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /Patient/$gpc.getstructuredrecord
+  method: post
+  operationId: get-structured-record
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /Patient/{id}/DocumentReference
   method: get
   operationId: search-document
@@ -121,6 +137,16 @@ operations:
 - path: /Patient/{id}/MedicationRequest
   method: get
   operationId: get-ordered-medicationrequest
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /Slot
+  method: get
+  operationId: getSlot
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -147,32 +173,6 @@ operations:
 - path: /Task
   method: get
   operationId: get-task
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /FHIR/STU3/Bundle
-  method: post
-  operationId: post-update
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /meta
-  method: get
-  operationId: get-capabilitystatement
   x-agentic-access:
     action-class: connected
     consequence: read
