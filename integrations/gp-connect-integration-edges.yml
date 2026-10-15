@@ -1,0 +1,89 @@
+edges:
+- partner_name: UK Government API Catalogue (CDDO)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  channel: standard-directory
+  relationship: standard-participant
+  evidence: https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
+  match:
+    method: domain+name-among-holders
+    domains:
+    - nhs.uk
+  register_listing:
+    publisher: nhs-digital
+    apis:
+    - name: GP Connect (Patient Facing) Access Record - FHIR API
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: GP Connect (Patient Facing) Appointment Management - FHIR API
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: GP Connect (Patient Facing) Prescriptions - FHIR API
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: GP Connect (Patient Facing) User Permissions API
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-user-permissions
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-user-permissions
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: GP Connect Access Document - FHIR API
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: 'GP Connect Access Record: HTML - FHIR API'
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-html-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-html-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: 'GP Connect Access Record: Structured - FHIR API'
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: GP Connect Appointment Management - FHIR API
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+    - name: GP Connect Send Document - FHIR
+      url: https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir
+      documentation: https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir
+      license: null
+      date_updated: '2024-04-23'
+      matched_on: url
+  contract_reference:
+    register: co-cddo/api-catalogue (UK Government API Catalogue, CDDO)
+    spec_file: null
+    role: public-sector-api-publisher
+    registered_name: nhs-digital
+    register_id: nhs-digital
+    matched_domain: nhs.uk
+    detected_by: sweep-gov-open-data.py
+    detected: '2026-10-15'
+  detected_by: sweep-gov-open-data.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
+checked:
+- 'https://api.gouv.fr/api/v1/apis (200 text/html: not machine-readable)'
+- 'https://catalog.data.gov/api/3/action/package_search (404; GSA mirror keyed: 403 API_KEY_MISSING)'
+- https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
+source:
+- https://raw.githubusercontent.com/co-cddo/api-catalogue/main/data/catalogue.csv
