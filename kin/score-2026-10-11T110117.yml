@@ -1,35 +1,33 @@
-# Kin Score artifact — gp-connect — 2026-09-08T214843
+# Kin Score artifact — gp-connect — 2026-10-11T110117
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: gp-connect
-  schema_version: 0.20.0
-  scored_at: '2026-09-08'
-  run_ts: 2026-09-08T214843
-  composite: 47.5
+  schema_version: 0.23.0
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
+  composite: 44.6
   band: developing
   facets:
-    discoverability: 74.1
-    contract_quality: 52.1
-    governance: 0.0
-    operational_transparency: 36.8
-    developer_ergonomics: 54.8
-    commercial_clarity: 52.6
+    discoverability: 71.4
+    contract_quality: 48.3
     contract_governance: 0.0
-    access_clarity: 52.6
+    operational_transparency: 33.7
+    developer_ergonomics: 54.8
+    access_clarity: 49.5
   agent_readiness:
-    score: 29.1
-    band: agent-ready
+    score: 24.7
+    band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
-      reversibility_documented: verified
+      reversibility_documented: documented
       mcp_server: false
       auth_clarity: bearer
       idempotency: false
       error_semantics: false
       openapi_examples: verified
-      rate_limit_signal: documented
+      rate_limit_signal: derived
       event_surface_described: false
       agent_skills: false
       well_known_catalog: false
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Health
     regime_id: health
-    score: 28.7
+    score: 18.0
     matched_via: tags
   provenance:
     agentic_access: derived
