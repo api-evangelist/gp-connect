@@ -10,7 +10,7 @@ edges:
   match:
     method: domain+name-among-holders
     domains:
-    - nhs.uk
+    - digital.nhs.uk
   register_listing:
     publisher: nhs-digital
     apis:
@@ -74,9 +74,9 @@ edges:
     role: public-sector-api-publisher
     registered_name: nhs-digital
     register_id: nhs-digital
-    matched_domain: nhs.uk
+    matched_domain: digital.nhs.uk
     detected_by: sweep-gov-open-data.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-gov-open-data.py
   first_seen: '2026-10-15'
 generated: '2026-10-15'
