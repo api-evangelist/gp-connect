@@ -1,4 +1,4 @@
-# GP Connect (gp-connect)
+# GP Connect
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,234 +66,134 @@
 
 GP Connect is a national NHS England interoperability programme that enables authorised clinical and patient-facing systems to securely access and update patient records held in GP principal clinical systems (EMIS Web, SystmOne, Vision). The programme exposes a suite of FHIR-based REST APIs spanning structured clinical record access (medications, allergies, immunisations, consultations, problems, investigations), unstructured document retrieval, appointment management, document sending, record updating, and patient-facing services for patients to view their own records, manage repeat prescriptions, and book appointments via the NHS App. Clinical system APIs are mediated through the Spine Security Proxy (SSP) over HSCN; patient-facing APIs use NHS login OpenID Connect at P9 identity verification. Access requires NHS England onboarding, an approved clinical use case, information governance compliance, and a clinical safety officer holding DCB0129 and DCB0160 certification. The service is funded by NHS England at no direct API cost to consuming organisations.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/gp-connect/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/gp-connect/refs/heads/main/apis.yml)
+**Areas:** NHS · FHIR · Healthcare · GP Records · Appointments · Prescriptions · Interoperability · United Kingdom · Patient Records · Electronic Health Records · FHIR STU3
 
-## Tags
+## GP Connect on APIs.io
 
-- NHS
-- FHIR
-- Healthcare
-- GP Records
-- Appointments
-- Prescriptions
-- Interoperability
-- UK
-- Patient Records
-- Electronic Health Records
-- FHIR STU3
-- FHIR R4
+Everything profiled for GP Connect is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/gp-connect/](https://apis.io/providers/gp-connect/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2026-06-13
-- **Modified:** 2026-06-13
+- [GP Connect Access Document FHIR API](https://apis.io/apis/gp-connect/access-document-fhir/) — Retrieve unstructured documents (e.g. scanned letters, attachments) from a patient's GP practice record. Complements the structured access API for cases…
+- [GP Connect Send Document FHIR API](https://apis.io/apis/gp-connect/send-document-fhir/) — Send a PDF consultation summary or clinical document to a patient's registered GP practice. Used when a patient is seen in a non-GP setting (out-of-hours,…
+- [GP Connect Appointment API](https://apis.io/apis/gp-connect/gp-connect-appointment-api/) — The Appointment API from GP Connect — 2 operation(s) for appointment.
+- [GP Connect Documents API](https://apis.io/apis/gp-connect/gp-connect-documents-api/) — The Documents API from GP Connect — 2 operation(s) for documents.
+- [GP Connect FHIR API](https://apis.io/apis/gp-connect/gp-connect-fhir-api/) — The FHIR API from GP Connect — 1 operation(s) for fhir.
+- [GP Connect Meta API](https://apis.io/apis/gp-connect/gp-connect-meta-api/) — The Meta API from GP Connect — 1 operation(s) for meta.
+- [GP Connect Patient API](https://apis.io/apis/gp-connect/gp-connect-patient-api/) — The Patient API from GP Connect — 4 operation(s) for patient.
+- [GP Connect Slot API](https://apis.io/apis/gp-connect/gp-connect-slot-api/) — The Slot API from GP Connect — 1 operation(s) for slot.
+- [GP Connect Task API](https://apis.io/apis/gp-connect/gp-connect-task-api/) — The Task API from GP Connect — 1 operation(s) for task.
 
-## APIs
+### Published properties
 
-### GP Connect Access Record - Structured FHIR API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Retrieve structured and coded clinical information from a patient's GP practice record via a FHIR STU3 interface. Supports retrieval of medications, allergies, immunisations, consultations, problems, investigations, and reviewed documents. Intended for clinical system consumers accessing data on behalf of healthcare professionals delivering direct care. Mediated through the Spine Security Proxy over HSCN. Current version is 1.5.0 and is in production.
+#### Agentic access (1)
 
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect-access-record-structured-fhir`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Gp Connect Agentic Access](https://apis.io/agentic-access/gp-connect/gp-connect-agentic-access/)
 
-- FHIR STU3
-- Patient Records
-- Medications
-- Allergies
-- Immunisations
-- Consultations
-- Problems
-- Investigations
-- Clinical Access
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-record-structured-fhir)
-- [OpenAPI](https://raw.githubusercontent.com/NHSDigital/gp-connect-access-record-structured-fhir/master/specification/gp-connect-access-record-structured-fhir.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Sandbox](https://sandbox.api.service.nhs.uk/gp-connect-access-record-structured-fhir)
-- [Git Hub](https://github.com/NHSDigital/gp-connect-access-record-structured-fhir)
+- [Gp Connect Context](https://apis.io/jsonld/gp-connect/gp-connect/)
 
-### GP Connect Access Document FHIR API
+#### Collections (7)
 
-Retrieve unstructured documents (e.g. scanned letters, attachments) from a patient's GP practice record. Complements the structured access API for cases where clinical information is held as binary document rather than coded FHIR resources. Mediated through the Spine Security Proxy over HSCN.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect-access-document-fhir`
+- [gp-connect-access-record-structured-fhir Appointment API](https://apis.io/collections/gp-connect/open-gp-connect-appointment-api/)
+- [gp-connect-access-record-structured-fhir Appointment Documents API](https://apis.io/collections/gp-connect/open-gp-connect-documents-api/)
+- [gp-connect-access-record-structured- Appointment FHIR API](https://apis.io/collections/gp-connect/open-gp-connect-fhir-api/)
+- [gp-connect-access-record-structured-fhir Appointment Meta API](https://apis.io/collections/gp-connect/open-gp-connect-meta-api/)
+- [gp-connect-access-record-structured-fhir Appointment Patient API](https://apis.io/collections/gp-connect/open-gp-connect-patient-api/)
+- [gp-connect-access-record-structured-fhir Appointment Slot API](https://apis.io/collections/gp-connect/open-gp-connect-slot-api/)
+- [gp-connect-access-record-structured-fhir Appointment Task API](https://apis.io/collections/gp-connect/open-gp-connect-task-api/)
 
-#### Tags
+#### Security (2)
 
-- FHIR STU3
-- Patient Records
-- Documents
-- Unstructured Records
-- Clinical Access
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Gp Connect Domain Security](https://apis.io/security/gp-connect/gp-connect-domain-security/)
+- [Gp Connect Vulnerability Disclosure](https://apis.io/security/gp-connect/gp-connect-vulnerability-disclosure/)
 
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-access-document-fhir)
+#### Plans and pricing (1)
 
-### GP Connect Appointment Management FHIR API
+Published plans, tiers and prices.
 
-Manage GP practice appointments between different clinical systems. Enables consumers to search for free appointment slots, book appointments, retrieve appointment details, amend appointments, and cancel appointments at a patient's registered GP practice. Mediated through the Spine Security Proxy over HSCN. Version 1.2.7 in production; the appointment management capability has been available as a clinical system API since 2018.
+- [Gp Connect Plans](https://apis.io/plans/gp-connect/gp-connect-plans/)
 
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect-appointment-management-fhir`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- FHIR STU3
-- Appointments
-- Slot Management
-- Booking
-- Clinical Access
+- [Gp Connect Rate Limits](https://apis.io/rate-limits/gp-connect/gp-connect-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-appointment-management-fhir)
-- [OpenAPI](https://raw.githubusercontent.com/NHSDigital/gp-connect-appointments-management-fhir/master/specification/gp-connect-appointments-management-fhir.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Sandbox](https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/appointments-management-fhir/FHIR/STU3)
-- [Git Hub](https://github.com/NHSDigital/gp-connect-appointments-management-fhir)
+What the API costs to run, by operation.
 
-### GP Connect Send Document FHIR API
+- [Gp Connect Finops](https://apis.io/finops/gp-connect/gp-connect-finops/)
 
-Send a PDF consultation summary or clinical document to a patient's registered GP practice. Used when a patient is seen in a non-GP setting (out-of-hours, community pharmacy, urgent care centre) and the consulting clinician needs to update the patient's GP record. Messages use FHIR STU3 ITK3 composition payloads delivered via MESH messaging infrastructure. In production.
+## Where to find this API
 
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir)
-- **Base URL:** `https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- FHIR STU3
-- ITK3
-- MESH
-- Documents
-- Messaging
-- Clinical Access
-
-#### Properties
-
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-send-document-fhir)
-
-### GP Connect Update Record FHIR API
-
-Send structured FHIR data to update a patient's GP record with medications, encounters, and observations. Currently approved for pharmacy use cases, including informing a GP that a patient has been prescribed antibiotics or had their blood pressure checked at a pharmacy. In development. Requires HSCN connectivity and Spine Directory Service (SDS) compliance.
-
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect-update-record-fhir`
-
-#### Tags
-
-- FHIR STU3
-- Patient Records
-- Medications
-- Encounters
-- Observations
-- Pharmacy
-- Clinical Access
-
-#### Properties
-
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-update-record-fhir)
-- [OpenAPI](https://raw.githubusercontent.com/NHSDigital/gp-connect-update-record-fhir/master/specification/gp-connect-update-record-fhir.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Git Hub](https://github.com/NHSDigital/gp-connect-update-record-fhir)
-
-### GP Connect Patient Facing Access Record FHIR API
-
-Allow patients to access structured and coded information from their own GP practice record via a patient-facing application. Retrieves medications, allergies, immunisations, consultations, problems, investigations, and reviewed documents in accordance with the patient's permission level set at their GP practice. Requires NHS login at P9 identity verification level. Uses OpenID Connect and OAuth 2.0. Currently available to New Market Entrant GP system suppliers and the NHS App. In production.
-
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/access-record-fhir/FHIR/STU3`
-
-#### Tags
-
-- FHIR STU3
-- Patient Facing
-- Patient Records
-- Medications
-- Allergies
-- Immunisations
-- NHS Login
-- NHS App
-
-#### Properties
-
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-access-record-fhir)
-- [OpenAPI](https://raw.githubusercontent.com/NHSDigital/gp-connect-access-record-fhir/master/specification/gp-connect-access-record-fhir.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Sandbox](https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/access-record-fhir/FHIR/STU3)
-- [Git Hub](https://github.com/NHSDigital/gp-connect-access-record-fhir)
-
-### GP Connect Patient Facing Appointment Management FHIR API
-
-Allow patients to book and manage their own appointments at their GP practice via a patient-facing application. Supports searching for free slots, booking appointments, retrieving existing appointments, and cancelling appointments. Patients cannot amend or reschedule; they must cancel and re-book. Requires NHS login at P9 identity verification level. Currently not available for new consumer onboarding; in development.
-
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/appointments-management-fhir/FHIR/STU3`
-
-#### Tags
-
-- FHIR STU3
-- Patient Facing
-- Appointments
-- Slot Management
-- Booking
-- NHS Login
-- NHS App
-
-#### Properties
-
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-appointment-management-fhir)
-- [OpenAPI](https://raw.githubusercontent.com/NHSDigital/gp-connect-appointments-management-fhir/master/specification/gp-connect-appointments-management-fhir.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Sandbox](https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/appointments-management-fhir/FHIR/STU3)
-- [Git Hub](https://github.com/NHSDigital/gp-connect-appointments-management-fhir)
-
-### GP Connect Patient Facing Prescriptions Management FHIR API
-
-Allow patients to manage repeat prescriptions held by their GP practice via a patient-facing application. Supports requesting a new instance of a repeat prescription, checking the status of a current prescription request, and requesting a new instance to a one-off nomination pharmacy. Conforms to FHIR R4 (v4.0.1) and UK Core STU2 1.1.3. Requires NHS login at P9 identity verification level. Silver service (24/7, business-hours support). In development; sandbox available.
-
-- **Human URL:** [https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir)
-- **Base URL:** `https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/prescriptions-management-fhir/FHIR/R4`
-
-#### Tags
-
-- FHIR R4
-- Patient Facing
-- Prescriptions
-- Medications
-- Repeat Prescriptions
-- NHS Login
-- NHS App
-- UK Core
-
-#### Properties
-
-- [Documentation](https://digital.nhs.uk/developer/api-catalogue/gp-connect-patient-facing-prescriptions-fhir)
-- [OpenAPI](https://raw.githubusercontent.com/NHSDigital/gp-connect-prescriptions-management-fhir/master/specification/gp-connect-prescriptions-management-fhir.yaml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Sandbox](https://sandbox.api.service.nhs.uk/gp-connect/patient-facing/prescriptions-management-fhir/FHIR/R4)
-- [Postman](https://god.gw.postman.com/run-collection/34036044-3c90d3e4-24ec-4a09-867e-26da1516ee61?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D34036044-3c90d3e4-24ec-4a09-867e-26da1516ee61%26entityType%3Dcollection%26workspaceId%3Dbad72f85-20d6-41c3-bd55-f30bf83f8c63) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Git Hub](https://github.com/NHSDigital/gp-connect-prescriptions-management-fhir)
-
-## Common Properties
-
-- [Portal](https://digital.nhs.uk/services/gp-connect)
+- [Website](https://www.nhs.uk/)
 - [Documentation](https://digital.nhs.uk/developer/api-catalogue)
-- [Help And Support](https://digital.nhs.uk/developer/help-and-support)
-- [Sign Up](https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers)
-- [Authentication](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-login-separate-authentication-and-authorisation)
-- [Onboarding](https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers)
-- [Git Hub](https://github.com/NHSDigital)
-- [Standards](https://standards.nhs.uk/published-standards/gp-connect-access-record-structured-fhir-api)
-- [Sandbox](https://orange.testlab.nhs.uk/)
-- [Service Level](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels)
-- [Network Access](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis)
-- [Clinical Safety](https://digital.nhs.uk/services/clinical-safety)
-- [Plans](plans/gp-connect-plans.yml)
-- [Rate Limits](rate-limits/gp-connect-rate-limits.yml)
-- [Fin Ops](finops/gp-connect-finops.yml)
+- [Getting started](https://digital.nhs.uk/services/gp-connect/develop-gp-connect-services/specifications-for-developers)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 48.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 54.8 |
+| Access clarity | 21.1 |
+
+**Agent readiness 24.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 18.0** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/gp-connect/](https://apis.io/providers/gp-connect/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for GP Connect: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/gp-connect/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
